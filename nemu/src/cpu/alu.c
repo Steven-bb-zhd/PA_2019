@@ -19,6 +19,30 @@ void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest)
 	return;
 
 }
+
+void set_PF(uint32_t result){
+	uint32_t res_low_8_bits = result&0xff;
+	uint32_t num_low_8_bits = 0;
+	for(int i=0;i<8;++i){
+		num_low_8_bits += res_low_8_bits & 0x1;
+		res_low_8_bits >>= 1;
+	}
+	if(num_low_8_bits % 2 ==0)
+		cpu.eflags.PF = 1;
+	else
+		cpu.eflags.PF = 0;
+	return;
+}
+
+void set_ZF(uint32_t result){
+	cpu.eflags.ZF = (result==0);
+	return;
+}
+
+void set_Sf(uint32_t result){
+	cpu.eflags.SF=sign(result);
+	return;
+}
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
 #ifdef NEMU_REF_ALU
