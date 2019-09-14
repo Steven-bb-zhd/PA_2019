@@ -1,5 +1,24 @@
 #include "cpu/cpu.h"
 
+void set_CF(uint32_t src,uint32_t result)
+{
+	cpu.eflags.CF=result<src;
+	return;
+}
+
+void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest)
+{
+	if(!cpu.eflags.CF)
+		set_CF_add(result, src);
+	else{
+		if(result <= src || result <= dest)
+			cpu.eflags.CF = 1;
+		else
+			cpu.eflags.CF = 0;
+	}:
+	return;
+
+}
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
 #ifdef NEMU_REF_ALU
