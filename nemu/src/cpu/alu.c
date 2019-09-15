@@ -19,7 +19,7 @@ void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 	else if(data_size==16)
 		result=result&(0xffffffff>>16);
 	if(!cpu.eflags.CF)
-		set_CF_add(result, src);
+		set_CF_add(result, src,data_size);
 	else{
 		if(result <= src || result <= dest)
 			cpu.eflags.CF = 1;
