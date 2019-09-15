@@ -59,7 +59,21 @@ void set_ZF(uint32_t result, size_t data_size){
 }
 
 void set_SF(uint32_t result,size_t data_size){
-
+	if(data_size==8)
+	{
+		result=(result&(0xffffffff>>24));
+		cpu.eflags.SF=result&0x80;
+	}
+	else if(data_size==16)
+	{
+		result=(result&(0xffffffff>>16));
+		cpu.eflags.SF=result&0x8000;
+	}
+	else
+	{
+		cpu.eflags.SF=result&0x80000000;
+	}
+	return;
 }
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
