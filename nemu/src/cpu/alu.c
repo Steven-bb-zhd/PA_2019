@@ -24,7 +24,10 @@ void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 		if(result <= src || result <= dest)
 			cpu.eflags.CF = 1;
 		else
+		{
 			cpu.eflags.CF = 0;
+		}
+		//cpu.eflags.CF = 0;
 	}
 	return;
 
@@ -132,9 +135,9 @@ uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
 	uint32_t result = src + dest;
 	if(data_size==8)
-		result=result&(0xff>>24);
+		result=result&0xff>>24;
 	else if(data_size==16)
-		result=result&(0xff>>16);
+		result=result&0xffff;
 	set_CF_add(src,result,data_size);
 	set_PF(result,data_size);
 	set_SF(result,data_size);
