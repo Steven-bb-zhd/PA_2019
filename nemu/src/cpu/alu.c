@@ -3,10 +3,10 @@
 void set_CF(uint32_t src,uint32_t result,size_t data_size)
 {
 	if(data_size==8){
-		result=result&(0xffff>>(32-data_size));
+		result=result&(0xffffffff>>(32-data_size));
 	}
 	else if(data_size==16)
-		result=result&(0xffff>>16);
+		result=result&(0xffffffff>>16);
 	cpu.eflags.CF=result<src;
 	return;
 }
@@ -14,10 +14,10 @@ void set_CF(uint32_t src,uint32_t result,size_t data_size)
 void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 {
 	if(data_size==8){
-		result=result&(0xffff>>(32-data_size));
+		result=result&(0xffffffff>>(32-data_size));
 	}
 	else if(data_size==16)
-		result=result&(0xfffffffffff>>16);
+		result=result&(0xffffffff>>16);
 	if(!cpu.eflags.CF)
 		set_CF_add(result, src);
 	else{
@@ -28,6 +28,24 @@ void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 	}
 	return;
 
+}
+
+void set_PF(uint32_t result,size_t data_size)
+{
+	uint32_t res_low_8_bits =result &0xff;
+	uint32_t sum_low_8_bits =0;
+	for(int i=0;i<8;++i){
+		sum_low_8_bits += res_low_8_bits&0x1;
+		res_low_8_bits>>=1;
+	}
+	if((sum_low_8_bits%2)==0)
+	{
+		cpu.eflags.PF=1;
+	}
+	else
+	{
+		cpu.eflags.PF=0;
+	}
 }
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
