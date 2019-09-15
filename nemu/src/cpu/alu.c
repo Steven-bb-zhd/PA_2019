@@ -150,7 +150,7 @@ uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
 	uint32_t result = src + dest;
 	if(data_size==8)
-		result=result&0xff>>24;
+		result=result&0xff;
 	else if(data_size==16)
 		result=result&0xffff;
 	set_CF_add(src,result,data_size);
