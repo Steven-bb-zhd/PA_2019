@@ -1,6 +1,6 @@
 #include "cpu/cpu.h"
 
-void set_CF(uint32_t src,uint32_t result,size_t data_size)
+void set_CF_add(uint32_t src,uint32_t result,size_t data_size)
 {
 	if(data_size==8){
 		result=result&(0xffffffff>>(32-data_size));
@@ -127,15 +127,27 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 	}
 	
 }
+
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
-#ifdef NEMU_REF_ALU
+	uint32_t result = src + dest;
+	if(data_size==8)
+		result=result&(0xff>>24);
+	else if(data_size==16)
+		result=result&(0xff>>16);
+	set_CF_add(src,result,data_size);
+	set_PF(result,data_size);
+	set_SF(result,data_size);
+	set_ZF(result,data_size);
+	set_OF_add(result,src,dest,data_size);
+	return result;
+/* #ifdef NEMU_REF_ALU
 	return __ref_alu_add(src, dest, data_size);
 #else
 	printf("\e[0;31mPlease implement me at alu.c\e[0m\n");
 	assert(0);
 	return 0;
-#endif
+#endif*/
 }
 
 uint32_t alu_adc(uint32_t src, uint32_t dest, size_t data_size)
