@@ -1,13 +1,23 @@
 #include "cpu/cpu.h"
 
-void set_CF(uint32_t src,uint32_t result)
+void set_CF(uint32_t src,uint32_t result,size_t data_size)
 {
+	if(data_size==8){
+		result=result&(0xffff>>(32-data_size));
+	}
+	else if(data_size==16)
+		result=result&(0xffff>>16);
 	cpu.eflags.CF=result<src;
 	return;
 }
 
-void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest)
+void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 {
+	if(data_size==8){
+		result=result&(0xffff>>(32-data_size));
+	}
+	else if(data_size==16)
+		result=result&(0xfffffffffff>>16);
 	if(!cpu.eflags.CF)
 		set_CF_add(result, src);
 	else{
