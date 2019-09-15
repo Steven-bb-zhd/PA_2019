@@ -70,23 +70,26 @@ void set_SF(uint32_t result,size_t data_size){
 	{
 		//cpu.eflags.SF=sign(result);
 		//result=(result&(0xffffffff>>24));
-		result>>=7;
-		cpu.eflags.SF=result&0x1;
+		uint32_t temp=result;
+		temp>>=7;
+		cpu.eflags.SF=temp&0x1;
 		//cpu.eflags.SF=result&0x80;
 	}
 	else if(data_size==16)
 	{
 		//cpu.eflags.SF=sign(result);
 		//result=(result&(0xffffffff>>16));
-		result>>=15;
-		cpu.eflags.SF=result&0x1;
+		uint32_t temp=result;
+		temp>>=15;
+		cpu.eflags.SF=temp&0x1;
 		
 	}
 	else
 	{
 		//cpu.eflags.SF=sign(result);
-		result>>=31;
-		cpu.eflags.SF=result&0x1;
+		uint32_t temp=result;
+		temp>>=31;
+		cpu.eflags.SF=temp&0x1;
 	}
 	return;
 }
