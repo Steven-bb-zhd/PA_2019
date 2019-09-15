@@ -46,6 +46,20 @@ void set_PF(uint32_t result,size_t data_size)
 	{
 		cpu.eflags.PF=0;
 	}
+	return;
+}
+
+void set_ZF(uint32_t result, size_t data_size){
+	if(data_size==8)
+		result=(result&(0xffffffff>>24));
+	else if(data_size==16)
+		result=result&(0xffffffff>>16);
+	cpu.eflags.ZF=(result==0);
+	return;
+}
+
+void set_CF(uint32_t result,size_t data_size){
+	
 }
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
 {
