@@ -76,7 +76,55 @@ void set_SF(uint32_t result,size_t data_size){
 	return;
 }
 
-void set_OF_add(uint32_t result,uint32_t src,uint32_t des,size_t data_size){
+void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
+	if(data_size==8)
+	{
+		src=(src&(0xffffffff>>24));
+		result=(result&(0xffffffff>>24));
+		dest=(dest&(0xffffffff>>24));
+		uint8_t res_8_bits_src=src&0x80;
+		uint8_t res_8_bits_dest=dest&0x80;
+		uint8_t res_8_bits_result=result&0x80;
+		if(res_8_bits_src==res_8_bits_dest){
+			if(res_8_bits_src!=res_8_bits_result)
+				cpu.eflags.OF = 1;
+			else
+				cpu.eflags.OF = 0;
+		}
+		else
+			cpu.eflags.OF = 0;
+	}
+	else if(data_size==16)
+	{
+		src=(src&(0xffffffff>>16));
+		result=(result&(0xffffffff>>16));
+		dest=(dest&(0xffffffff>>16));
+		uint16_t res_16_bits_src=src&0x8000;
+		uint16_t res_16_bits_dest=dest&0x8000;
+		uint16_t res_16_bits_result=result&0x8000;
+		if(res_16_bits_src==res_16_bits_dest){
+			if(res_16_bits_src!=res_16_bits_result)
+				cpu.eflags.OF = 1;
+			else
+				cpu.eflags.OF = 0;
+		}
+		else
+			cpu.eflags.OF = 0;
+	}
+	else
+	{
+		uint32_t res_32_bits_src=src&0x80000000;
+		uint32_t res_32_bits_dest=dest&0x80000000;
+		uint32_t res_32_bits_result=result&0x80000000;
+		if(res_32_bits_src==res_32_bits_dest){
+			if(res_32_bits_src!=res_32_bits_result)
+				cpu.eflags.OF = 1;
+			else
+				cpu.eflags.OF = 0;
+		}
+		else
+			cpu.eflags.OF = 0;
+	}
 	
 }
 uint32_t alu_add(uint32_t src, uint32_t dest, size_t data_size)
