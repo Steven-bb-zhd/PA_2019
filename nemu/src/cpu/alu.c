@@ -68,18 +68,21 @@ void set_ZF(uint32_t result, size_t data_size){
 void set_SF(uint32_t result,size_t data_size){
 	if(data_size==8)
 	{
+		cpu.eflags.SF=sign(result);
 		//result=(result&(0xffffffff>>24));
-		cpu.eflags.SF=result&0x80;
+		//cpu.eflags.SF=result&0x80;
 	}
 	else if(data_size==16)
 	{
+		cpu.eflags.SF=sign(result);
 		//result=(result&(0xffffffff>>16));
-		cpu.eflags.SF=result&0x8000;
+		//cpu.eflags.SF=result&0x8000;
 	}
 	else
 	{
-		cpu.eflags.SF=result&0x80000000;
+		cpu.eflags.SF=sign(result);
 	}
+		//cpu.eflags.SF=result&0x80000000;
 	return;
 }
 
