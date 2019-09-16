@@ -212,9 +212,20 @@ void set_CF_sub(uint32_t result, uint32_t dest,size_t data_size)
 	cpu.eflags.CF = dest < result;
 }
 
-void set_CF_sbb(uint32_t srcc,uint32_t dest, uint32_t result, size_t data_size)
+void set_CF_sbb(uint32_t src,uint32_t dest, uint32_t result, size_t data_size)
 {
-
+	if(data_size==8)
+	{
+		dest=dest&0xff;
+		src=src&0xff;
+		result=result&0xff;
+	}
+	else if(data_size==16)
+	{
+		dest=dest&0xffff;
+		src=src&0xffff;
+		result=result&0xffff;
+	}
 }
 
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
