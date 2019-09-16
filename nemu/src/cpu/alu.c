@@ -226,6 +226,16 @@ void set_CF_sbb(uint32_t src,uint32_t dest, uint32_t result, size_t data_size)
 		src=src&0xffff;
 		result=result&0xffff;
 	}
+	if(!cpu.eflags.CF){
+		set_CF_sub(result,dest,data_size);
+	}
+	else
+	{
+		if(dest<=result)
+			cpu.eflags.CF=1;
+		else
+			cpu.eflags.CF=0;
+	}
 }
 
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
