@@ -212,6 +212,11 @@ void set_CF_sub(uint32_t result, uint32_t dest,size_t data_size)
 	cpu.eflags.CF = dest < result;
 }
 
+void set_CF_abb(uint32_t srcc,uint32_t dest, uint32_t result, size_t data_size)
+{
+	
+}
+
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 {
 #ifdef NEMU_REF_ALU
