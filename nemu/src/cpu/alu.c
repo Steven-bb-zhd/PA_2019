@@ -18,10 +18,16 @@ void set_CF_add(uint32_t src,uint32_t result,size_t data_size)
 void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 {
 	if(data_size==8){
+		src=src&0xff;
+		dest=dest&0xff;
 		result=result&(0xffffffff>>(32-data_size));
 	}
 	else if(data_size==16)
-		result=result&(0xffffffff>>16);
+		{
+			src=src&0xffff;
+			dest=dest&0xffff;
+			result=result&(0xffffffff>>16);
+		}
 	if(!cpu.eflags.CF)
 		set_CF_add(result, src,data_size);
 	else{
