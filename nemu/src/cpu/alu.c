@@ -251,10 +251,24 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 		src=src&0xffff;
 		result=result&0xffff;
 	}
+	uint32_t src_not = ~(src)+1;
+	set_OF_add(result,src_not,dest,data_size);
+	return;
 }
 
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	res=dest-src;
+	if(data_size==8)
+		res=res&0xff;
+	else if(data_size==16)
+		res=res&0xffff;
+	set_CF_sub(res,dest,data_size);
+	set_PF(res,data_size);
+	set_ZF(res,data_size);
+	set_SF(res,data_size);
+	set_OF_sub(res,dest,src,data_size);
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sub(src, dest, data_size);
 #else
@@ -266,6 +280,17 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	res=dest-src-cpu.eflags.CF;
+	if(data_size==8)
+		res=res&0xff;
+	else if(data_size==16)
+		res=res&0xffff;
+	set_CF_sbb(res,dest,data_size);
+	set_PF(res,data_size);
+	set_ZF(res,data_size);
+	set_SF(res,data_size);
+	set_OF_sub(res,dest,src,data_size);
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sbb(src, dest, data_size);
 #else
