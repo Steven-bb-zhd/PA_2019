@@ -388,6 +388,15 @@ uint32_t alu_div(uint64_t src, uint64_t dest, size_t data_size)
 // need to implement alu_imod before testing
 int32_t alu_idiv(int64_t src, int64_t dest, size_t data_size)
 {
+	int32_t res=0;
+	if(src==0){
+		assert(0);
+		return 0;
+	}
+	else{
+		res=dest/src;
+	}
+	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_idiv(src, dest, data_size);
 #else
