@@ -304,6 +304,43 @@ uint32_t alu_sbb(uint32_t src, uint32_t dest, size_t data_size)
 
 uint64_t alu_mul(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint64_t res=0;
+	res=(uint64_t)src*(uint64_t)dest;
+	if(data_size==8){
+		uint8_t res_high_8_bits=(res&0xff00)>>8;
+		if(res_high_8_bits){
+			cpu.eflags.CF=1;
+			cpu.eflags.OF=1;
+		}
+		else{
+			cpu.eflags.CF=0;
+			cpu.eflags.OF=0;
+		}
+		//set_PF(res,data_size);
+	}
+	else if(data_size==16){
+		uint16_t res_hihg_16_bits = (res&0xffff0000)>>16;
+		if(res_hihg_16_bits){
+			cpu.eflags.CF=1;
+			cpu.eflags.OF=1;
+		}
+		else{
+			cpu.eflags.CF=0;
+			cpu.eflags.OF=0;
+		}
+	}
+	else{
+		uint32_t res_high_32_bits = (res&0xffffffff00000000)>>32;
+		if(res_high_32_bits){
+			cpu.eflags.CF=1;
+			cpu.eflags.OF=1;
+		}
+		else{
+			cpu.eflags.CF=0;
+			cpu.eflags.OF=0;
+		}
+	}
+	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_mul(src, dest, data_size);
 #else
