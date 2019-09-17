@@ -399,6 +399,9 @@ int32_t alu_idiv(int64_t src, int64_t dest, size_t data_size)
 
 uint32_t alu_mod(uint64_t src, uint64_t dest)
 {
+	uint32_t res=0;
+	res=dest%src;
+	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_mod(src, dest);
 #else
