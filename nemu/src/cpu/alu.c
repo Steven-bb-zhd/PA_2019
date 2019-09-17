@@ -661,7 +661,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 		else{
 			int32_t temp=dest;
 			dest=temp>>(src-1);
-			temp>>(src-1);
+			temp>>=(src-1);
 			
 			//temp>>=31;
 			uint32_t CF_flags=dest&0x1;
