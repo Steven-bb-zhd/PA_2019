@@ -555,7 +555,15 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 		{
 			uint8_t dest_low_8_bits = dest&0xff;
 			dest_low_8_bits>>=src-1;
-			uint32_t temp=dest_low_8_bits;
+			uint8_t temp=dest_low_8_bits;
+			temp>>=7;
+			uint8_t CF_flags=temp&0x1;
+			dest_low_8_bits>>=1;
+			uint8_t OF_flags=(dest_low_8_bits&0x80)>>7;
+			cpu.eflags.CF=CF_flags;
+			res=dest_low_8_bits&0xffffffff;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
 	}
 #ifdef NEMU_REF_ALU
