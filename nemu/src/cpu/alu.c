@@ -372,6 +372,21 @@ int32_t alu_imod(int64_t src, int64_t dest)
 
 uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size)
 {
+
+	uint32_t res=0;
+	if(data_size==8)
+	{
+		src=src&0xff;
+		dest=dest&0xff;
+	}
+	else if(data_size==16)
+	{
+		src=src&0xffff;
+		dest=dest&0xffff;
+	}
+	res=dest&src;
+	cpu.eflags.CF=0;
+	cpu.eflags.OF=0;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_and(src, dest, data_size);
 #else
