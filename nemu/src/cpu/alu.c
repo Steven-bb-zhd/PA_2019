@@ -642,10 +642,11 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 		else if(data_size==16)
 		{
 			uint16_t dest_low_16_bits=dest&0xffff;
-			dest_low_16_bits=(int8_t)dest_low_16_bits>>(src-1);			uint16_t temp=dest_low_16_bits;
+			dest_low_16_bits=(int16_t)dest_low_16_bits>>(src-1);			
+			uint16_t temp=dest_low_16_bits;
 			//temp>>=(16-src);
 			uint16_t CF_flags=temp&0x1;
-			dest_low_16_bits=(int8_t)dest_low_16_bits>>1;
+			dest_low_16_bits=(int16_t)dest_low_16_bits>>1;
 			uint16_t OF_flags=dest_low_16_bits&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=(uint16_t)dest_low_16_bits&0xffffffff;
