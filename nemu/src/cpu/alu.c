@@ -45,7 +45,7 @@ void set_CF_adc(uint32_t src,uint32_t result,uint32_t dest,size_t data_size)
 
 void set_PF(uint32_t result,size_t data_size)
 {
-	uint8_t res_low_8_bits =result &0xff;
+	uint8_t res_low_8_bits =result & 0xff;
 	uint8_t sum_low_8_bits =0;
 	for(int i=0;i<8;++i){
 		sum_low_8_bits += res_low_8_bits&0x1;
