@@ -554,6 +554,8 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 		if(data_size==8)
 		{
 			uint8_t dest_low_8_bits = dest&0xff;
+			dest_low_8_bits>>=src-1;
+			uint32_t temp=dest_low_8_bits;
 		}
 	}
 #ifdef NEMU_REF_ALU
