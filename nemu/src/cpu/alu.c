@@ -533,6 +533,29 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	if (src==0){
+		if(data_size==8){
+			res=dest&0xff;
+		}
+		else if(data_size==16)
+		{
+			res=dest&0xffff;
+		}
+		else{
+			res=dest;
+		}
+		set_PF(res,data_size);
+		set_ZF(res,data_size);
+		set_SF(res,data_size);
+		return res;
+	}
+	else{
+		if(data_size==8)
+		{
+			uint8_t dest_low_8_bits = dest&0xff;
+		}
+	}
 #ifdef NEMU_REF_ALU
 	return __ref_alu_shr(src, dest, data_size);
 #else
