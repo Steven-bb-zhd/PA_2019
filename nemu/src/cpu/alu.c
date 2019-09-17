@@ -635,7 +635,14 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 			dest_low_8_bits=dest_low_8_bits>>1;
 			uint8_t OF_flags=dest_low_8_bits&0x1;
 			cpu.eflags.CF=CF_flags;
-			res=dest_low_8_bits&0xffffffff;
+			uint8_t flag=(dest>>7)&0x1;
+			if(flag){
+				res=dest_low_8_bits|0xffffff00;
+			}
+			else
+			{
+				res=dest_low_8_bits&0xffffffff;
+			}
 			if(src==1)
 				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
@@ -649,7 +656,14 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 			dest_low_16_bits=dest_low_16_bits>>1;
 			uint16_t OF_flags=dest_low_16_bits&0x1;
 			cpu.eflags.CF=CF_flags;
-			res=dest_low_16_bits&0xffffffff;
+			uint16_t flag=(dest>>15)&0x1;
+			if(flag){
+				res=dest_low_16_bits|0xffffff00;
+			}
+			else
+			{
+				res=dest_low_16_bits&0xffffffff;
+			}
 			if(src==1)
 				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
