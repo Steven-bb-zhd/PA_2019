@@ -402,6 +402,24 @@ uint32_t alu_and(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_xor(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	if(data_size==8)
+	{
+		src=src&0xff;
+		dest=dest&0xff;
+	}
+	else if(data_size==16)
+	{
+		src=src&0xffff;
+		dest=dest&0xffff;
+	}
+	res=dest^src;
+	cpu.eflags.CF=0;
+	cpu.eflags.OF=0;
+	set_PF(res,data_size);
+	set_ZF(res,data_size);
+	set_SF(res,data_size);
+	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_xor(src, dest, data_size);
 #else
@@ -413,6 +431,24 @@ uint32_t alu_xor(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_or(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	if(data_size==8)
+	{
+		src=src&0xff;
+		dest=dest&0xff;
+	}
+	else if(data_size==16)
+	{
+		src=src&0xffff;
+		dest=dest&0xffff;
+	}
+	res=dest|src;
+	cpu.eflags.CF=0;
+	cpu.eflags.OF=0;
+	set_PF(res,data_size);
+	set_ZF(res,data_size);
+	set_SF(res,data_size);
+	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_or(src, dest, data_size);
 #else
