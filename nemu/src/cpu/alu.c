@@ -668,7 +668,7 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 		set_ZF(res,data_size);
 		set_SF(res,data_size);
 		return res;
-	}vvvvv
+	}
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sar(src, dest, data_size);
 #else
