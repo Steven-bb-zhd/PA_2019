@@ -556,10 +556,10 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 			uint8_t dest_low_8_bits = dest&0xff;
 			dest_low_8_bits>>=src-1;
 			uint8_t temp=dest_low_8_bits;
-			temp>>=7;
+			//temp>>=()
 			uint8_t CF_flags=temp&0x1;
 			dest_low_8_bits>>=1;
-			uint8_t OF_flags=(dest_low_8_bits&0x80)>>7;
+			uint8_t OF_flags=dest&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest_low_8_bits&0xffffffff;
 			if(src==1)
@@ -570,10 +570,10 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 			uint16_t dest_low_16_bits=dest&0xffff;
 			dest_low_16_bits>>=src-1;
 			uint16_t temp=dest_low_16_bits;
-			temp>>=15;
+			//temp>>=(16-src);
 			uint16_t CF_flags=temp&0x1;
 			dest_low_16_bits>>=1;
-			uint16_t OF_flags=(dest_low_16_bits&0x8000)>>7;
+			uint16_t OF_flags=dest&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest_low_16_bits&0xffffffff;
 			if(src==1)
@@ -582,10 +582,10 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 		else{
 			dest>>=src-1;
 			uint32_t temp=dest;
-			temp>>=31;
+			//temp>>=31;
 			uint32_t CF_flags=temp&0x1;
 			dest>>=1;
-			uint32_t OF_flags=(dest&0x80000000)>>31;
+			uint32_t OF_flags=dest&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest;
 			if(src==1)
