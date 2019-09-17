@@ -559,7 +559,7 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 			//temp>>=()
 			uint8_t CF_flags=temp&0x1;
 			dest_low_8_bits>>=1;
-			uint8_t OF_flags=dest&0x1;
+			uint8_t OF_flags=dest_low_8_bits&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest_low_8_bits&0xffffffff;
 			if(src==1)
@@ -573,7 +573,7 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 			//temp>>=(16-src);
 			uint16_t CF_flags=temp&0x1;
 			dest_low_16_bits>>=1;
-			uint16_t OF_flags=dest&0x1;
+			uint16_t OF_flags=dest_low_16_bits&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest_low_16_bits&0xffffffff;
 			if(src==1)
@@ -607,6 +607,68 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 
 uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 {
+	uint32_t res=0;
+	if (src==0){
+		if(data_size==8){
+			res=dest&0xff;
+		}
+		else if(data_size==16)
+		{
+			res=dest&0xffff;
+		}
+		else{
+			res=dest;
+		}
+		set_PF(res,data_size);
+		set_ZF(res,data_size);
+		set_SF(res,data_size);
+		return res;
+	}
+	else{
+		if(data_size==8)
+		{
+			uint8_t dest_low_8_bits = dest&0xff;
+			dest_low_8_bits=(int8_t)dest_low_8_bits>>(src-1);
+			uint8_t temp=dest_low_8_bits;
+			//temp>>=()
+			uint8_t CF_flags=temp&0x1;
+			dest_low_8_bits=(int8_t)dest_low_8_bits>>1;
+			uint8_t OF_flags=dest_low_8_bits&0x1;
+			cpu.eflags.CF=CF_flags;
+			res=dest_low_8_bits&0xffffffff;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
+		}
+		else if(data_size==16)
+		{
+			uint16_t dest_low_16_bits=dest&0xffff;
+			dest_low_16_bits=(int8_t)dest_low_16_bits>>(src-1);			uint16_t temp=dest_low_16_bits;
+			//temp>>=(16-src);
+			uint16_t CF_flags=temp&0x1;
+			dest_low_16_bits=(int8_t)dest_low_16_bits>>1;
+			uint16_t OF_flags=dest_low_16_bits&0x1;
+			cpu.eflags.CF=CF_flags;
+			res=dest_low_16_bits&0xffffffff;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
+		}
+		else{
+			dest>>=src-1;
+			uint32_t temp=dest;
+			//temp>>=31;
+			uint32_t CF_flags=temp&0x1;
+			dest>>=1;
+			uint32_t OF_flags=dest&0x1;
+			cpu.eflags.CF=CF_flags;
+			res=dest;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
+		}
+		set_PF(res,data_size);
+		set_ZF(res,data_size);
+		set_SF(res,data_size);
+		return res;
+	}vvvvv
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sar(src, dest, data_size);
 #else
