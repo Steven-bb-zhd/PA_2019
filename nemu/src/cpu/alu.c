@@ -507,7 +507,9 @@ uint32_t alu_shl(uint32_t src, uint32_t dest, size_t data_size)
 		}
 		else{
 			dest<<=src-1;
-			uint32_t CF_flags=(dest&0x80000000)>>31;
+			uint32_t temp=dest;
+			temp>>=31;
+			uint32_t CF_flags=temp&0x1;
 			dest<<=1;
 			uint32_t OF_flags=(dest&0x80000000)>>31;
 			cpu.eflags.CF=CF_flags;
