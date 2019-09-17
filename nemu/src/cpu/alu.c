@@ -373,9 +373,8 @@ uint32_t alu_div(uint64_t src, uint64_t dest, size_t data_size)
 		return -1;
 	}
 	else{
-		res=dest/res;
+		res=dest/src;
 	}
-	res=dest/src;
 	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_div(src, dest, data_size);
