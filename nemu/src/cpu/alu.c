@@ -565,6 +565,36 @@ uint32_t alu_shr(uint32_t src, uint32_t dest, size_t data_size)
 			if(src==1)
 				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
+		else if(data_size==16)
+		{
+			uint16_t dest_low_16_bits=dest&0xffff;
+			dest_low_16_bits>>=src-1;
+			uint16_t temp=dest_low_16_bits;
+			temp>>=15;
+			uint16_t CF_flags=temp&0x1;
+			dest_low_16_bits>>=1;
+			uint16_t OF_flags=(dest_low_16_bits&0x8000)>>7;
+			cpu.eflags.CF=CF_flags;
+			res=dest_low_16_bits&0xffffffff;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
+		}
+		else{
+			dest<<=src-1;
+			uint32_t temp=dest;
+			temp>>=31;
+			uint32_t CF_flags=temp&0x1;
+			dest<<=1;
+			uint32_t OF_flags=(dest&0x80000000)>>31;
+			cpu.eflags.CF=CF_flags;
+			res=dest;
+			if(src==1)
+				cpu.eflags.OF=CF_flags!=OF_flags;
+		}
+		set_PF(res,data_size);
+		set_ZF(res,data_size);
+		set_SF(res,data_size);
+		return res;
 	}
 #ifdef NEMU_REF_ALU
 	return __ref_alu_shr(src, dest, data_size);
