@@ -628,51 +628,44 @@ uint32_t alu_sar(uint32_t src, uint32_t dest, size_t data_size)
 		if(data_size==8)
 		{
 			uint8_t dest_low_8_bits = dest&0xff;
-			dest_low_8_bits=dest_low_8_bits>>(src-1);
-			uint8_t temp=dest_low_8_bits;
+			int8_t temp=dest_low_8_bits;
+			dest_low_8_bits=temp>>(src-1);
+			temp>>=(src-1);
+			uint8_t temp_1=dest_low_8_bits;
 			//temp>>=()
-			uint8_t CF_flags=temp&0x1;
-			dest_low_8_bits=dest_low_8_bits>>1;
+			uint8_t CF_flags=temp_1&0x1;
+			dest_low_8_bits=temp>>1;
 			uint8_t OF_flags=dest_low_8_bits&0x1;
 			cpu.eflags.CF=CF_flags;
-			uint8_t flag=(dest>>7)&0x1;
-			if(flag){
-				res=dest_low_8_bits|0xffffff00;
-			}
-			else
-			{
-				res=dest_low_8_bits&0xffffffff;
-			}
+			res=dest_low_8_bits;
 			if(src==1)
 				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
 		else if(data_size==16)
 		{
 			uint16_t dest_low_16_bits=dest&0xffff;
-			dest_low_16_bits=dest_low_16_bits>>(src-1);			
-			uint16_t temp=dest_low_16_bits;
+			int16_t temp=dest_low_16_bits;
+			dest_low_16_bits=temp>>(src-1);	
+			temp>>=(src-1);		
+			uint16_t temp_1=dest_low_16_bits;
 			//temp>>=(16-src);
-			uint16_t CF_flags=temp&0x1;
-			dest_low_16_bits=dest_low_16_bits>>1;
+			uint16_t CF_flags=temp_1&0x1;
+			dest_low_16_bits=temp>>1;
+			temp>>=1;
 			uint16_t OF_flags=dest_low_16_bits&0x1;
 			cpu.eflags.CF=CF_flags;
-			uint16_t flag=(dest>>15)&0x1;
-			if(flag){
-				res=dest_low_16_bits|0xffffff00;
-			}
-			else
-			{
-				res=dest_low_16_bits&0xffffffff;
-			}
+			res=dest_low_16_bits;
 			if(src==1)
 				cpu.eflags.OF=CF_flags!=OF_flags;
 		}
 		else{
-			dest>>=src-1;
-			uint32_t temp=dest;
+			int32_t temp=dest;
+			dest=temp>>(src-1);
+			temp>>(src-1);
+			
 			//temp>>=31;
-			uint32_t CF_flags=temp&0x1;
-			dest>>=1;
+			uint32_t CF_flags=dest&0x1;
+			dest=temp>>1;
 			uint32_t OF_flags=dest&0x1;
 			cpu.eflags.CF=CF_flags;
 			res=dest;
