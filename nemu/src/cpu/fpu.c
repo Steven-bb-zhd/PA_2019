@@ -40,9 +40,15 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			
 			/*printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);*/
-			exp=0xff;
-			sig_grs=0;
 			overflow = true;
+			if(sign){
+				return N_INF_F;
+			}
+			else
+			{
+				return P_INF_F;
+			}
+			
 		}
 		if (exp == 0)
 		{
@@ -118,7 +124,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			if((sig_grs>>23)>1){
 				sig_grs>>=1;
 				exp++;
-				if(exp>=0xff){
+				while(exp>=0xff){
 				overflow=true;
 				exp=0xff;
 				sig_grs=0;
@@ -141,7 +147,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			if(sig_grs&0x1)
 			{
 				sig_grs++;
-				if((sig_grs>>23)>1){
+				while((sig_grs>>23)>1){
 					sig_grs>>=1;
 					exp++;
 					if(exp>=0xff){
