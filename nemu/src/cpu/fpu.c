@@ -346,7 +346,9 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a)
 
 	sig_res = sig_a * sig_b; // 24b * 24b
 	uint32_t exp_res = 0;
-
+	printf("sig_a=%x\n",sig_a);
+	printf("sig_b=%x\n",sig_b);
+	printf("sig_res=%x\n",sig_res);
 	/* TODO: exp_res = ? leave space for GRS bits. */
 	exp_res= fa.exponent + fb.exponent - 127 - 23 + 3;
 	//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
