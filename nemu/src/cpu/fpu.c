@@ -8,6 +8,7 @@ FLOAT p_zero, n_zero, p_inf, n_inf, p_nan, n_nan;
 // the last three bits of the significand are reserved for the GRS bits
 inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 {
+	printf("sig_grs = %llx\n",sig_grs);
 	printf("sig_grs = %llx\n",sig_grs>>26);
 	printf("exp = %x\n",exp);
 	// normalization
@@ -23,7 +24,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		{
 			
 			/* TODO: shift right, pay attention to sticky bit*/
-			if((sig_grs&0x3)!=0)
+			if((sig_grs&0x1)!=0)
 			{
 				sticky=1;
 			}
@@ -51,7 +52,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/* TODO: shift right, pay attention to sticky bit*/
 			//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			//assert(0);
-			if((sig_grs&0x3)!=0)
+			if((sig_grs&0x1)!=0)
 				sticky=1;
 			sig_grs>>=1;
 			sig_grs|=sticky;
@@ -87,7 +88,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/* TODO: shift right, pay attention to sticky bit*/
 			//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			//assert(0);
-			if((sig_grs&0x3)!=0)
+			if((sig_grs&0x1)!=0)
 				sticky=1;
 			sig_grs>>=1;
 			sig_grs|=sticky;
