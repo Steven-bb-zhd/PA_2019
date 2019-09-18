@@ -135,8 +135,10 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		}
 		else{
 			sig_grs >>=3;
+			printf("sig_grs = %llx\n",sig_grs);
 		}
 		sig_grs&=0x7fffff;
+		printf("sig_grs = %llx\n",sig_grs);
 	}
 
 	FLOAT f;
