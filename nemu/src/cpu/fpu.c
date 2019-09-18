@@ -8,8 +8,8 @@ FLOAT p_zero, n_zero, p_inf, n_inf, p_nan, n_nan;
 // the last three bits of the significand are reserved for the GRS bits
 inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 {
-	printf("sig_grs = %llx\n",sig_grs>>26);
-	printf("exp = %x\n",exp);
+	//printf("sig_grs = %llx\n",sig_grs>>26);
+	//printf("exp = %x\n",exp);
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
 	uint32_t sticky = 0;
@@ -79,8 +79,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			//printf("sig_grs = %llx\n",sig_grs);
 			exp--;
 		}
-		printf("sig_grs = %llx\n",sig_grs>>26);
-		printf("exp = %x\n",exp);
+		//printf("sig_grs = %llx\n",sig_grs>>26);
+		//printf("exp = %x\n",exp);
 		if (exp == 0)
 		{
 			// denormal
@@ -106,9 +106,9 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		//assert(0);
 		uint32_t last_3_bits =sig_grs&0x7;
-		printf("sig_grs = %llx\n",sig_grs);
-		printf("last_3_bits = %x\n",last_3_bits);
-		printf("sig_grs = %llx\n",sig_grs>>26);
+		//printf("sig_grs = %llx\n",sig_grs);
+		//printf("last_3_bits = %x\n",last_3_bits);
+		//printf("sig_grs = %llx\n",sig_grs>>26);
 		if(last_3_bits>4){
 			sig_grs>>=3;
 			//printf("sig_grs = %llx\n",sig_grs);
@@ -162,8 +162,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			//printf("sig_grs = %llx\n",sig_grs);
 		}
 		sig_grs&=0x7fffff;
-		printf("sig_grs = %llx\n",sig_grs);
-		printf("exp = %x\n",exp);
+		//printf("sig_grs = %llx\n",sig_grs);
+		//printf("exp = %x\n",exp);
 	}
 
 	FLOAT f;
@@ -171,8 +171,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	f.sign = sign;
 	f.exponent = (uint32_t)(exp & 0xff);
 	f.fraction = sig_grs; // here only the lowest 23 bits are kept
-	printf("sig_grs = %llx\n",sig_grs);
-	printf("float add f.val= %x\n",f.val);
+	//printf("sig_grs = %llx\n",sig_grs);
+	//printf("float add f.val= %x\n",f.val);
 	return f.val;
 }
 
