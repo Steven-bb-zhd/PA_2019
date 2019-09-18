@@ -138,8 +138,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			//printf("sig_grs = %llx\n",sig_grs);
 		}
 		sig_grs&=0x7fffff;
-		//printf("sig_grs = %llx\n",sig_grs);
-		//printf("exp = %x\n",exp);
+		printf("sig_grs = %llx\n",sig_grs);
+		printf("exp = %x\n",exp);
 	}
 
 	FLOAT f;
@@ -147,8 +147,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	f.sign = sign;
 	f.exponent = (uint32_t)(exp & 0xff);
 	f.fraction = sig_grs; // here only the lowest 23 bits are kept
-	//printf("sig_grs = %llx\n",sig_grs);
-	//printf("float add f.val= %x\n",f.val);
+	printf("sig_grs = %llx\n",sig_grs);
+	printf("float add f.val= %x\n",f.val);
 	return f.val;
 }
 
