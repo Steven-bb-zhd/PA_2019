@@ -87,7 +87,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				sticky=1;
 			sig_grs>>=1;
 			sig_grs|=sticky;
-			exp++;
+			//exp++;
 		}
 	}
 	else if (exp == 0 && sig_grs >> (23 + 3) == 1)
