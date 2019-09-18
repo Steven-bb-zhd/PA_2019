@@ -76,7 +76,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			//assert(0);
 			sig_grs<<=1;
-			printf("sig_grs = %llx\n",sig_grs>>26);
+			printf("sig_grs = %llx\n",sig_grs);
 			exp--;
 		}
 		printf("sig_grs = %llx\n",sig_grs>>26);
