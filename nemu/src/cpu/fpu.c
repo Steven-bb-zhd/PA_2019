@@ -55,7 +55,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				sticky=1;
 			sig_grs>>=1;
 			sig_grs|=sticky;
-			exp++;
+			//exp++;
 		}
 		if (exp < 0)
 		{
@@ -69,7 +69,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	}
 	else if (((sig_grs >> (23 + 3)) == 0) && exp > 0)
 	{
-		printf("x\n");
+		//printf("x\n");
 		// normalize toward left
 		while (((sig_grs >> (23 + 3)) == 0) && exp > 0)
 		{
@@ -81,7 +81,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			exp--;
 		}
 		//printf("sig_grs = %llx\n",sig_grs>>26);
-		printf("exp = %x\n",exp);
+		//printf("exp = %x\n",exp);
 		if (exp == 0)
 		{
 			// denormal
@@ -173,8 +173,8 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 	f.sign = sign;
 	f.exponent = (uint32_t)(exp & 0xff);
 	f.fraction = sig_grs; // here only the lowest 23 bits are kept
-	printf("sig_grs = %llx\n",sig_grs);
-	printf("f.exponent=%x\n",f.exponent);
+	//printf("sig_grs = %llx\n",sig_grs);
+	//printf("f.exponent=%x\n",f.exponent);
 	//printf("float add f.val= %x\n",f.val);
 	return f.val;
 }
@@ -372,12 +372,12 @@ uint32_t internal_float_mul(uint32_t b, uint32_t a)
 
 	sig_res = sig_a * sig_b; // 24b * 24b
 	uint32_t exp_res = 0;
-	printf("sig_a=%llx\n",sig_a);
-	printf("sig_b=%llx\n",sig_b);
-	printf("sig_res=%llx\n",sig_res);
+	//printf("sig_a=%llx\n",sig_a);
+	//printf("sig_b=%llx\n",sig_b);
+	//printf("sig_res=%llx\n",sig_res);
 	/* TODO: exp_res = ? leave space for GRS bits. */
 	exp_res= fa.exponent + fb.exponent - 127 - 23 + 3;
-	printf("exp=%x\n",exp_res);
+	//printf("exp=%x\n",exp_res);
 	//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 	//assert(0);
 	return internal_normalize(f.sign, exp_res, sig_res);
