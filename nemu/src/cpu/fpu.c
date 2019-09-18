@@ -113,7 +113,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			printf("sig_grs = %llx\n",sig_grs);
 			sig_grs++;
 			printf("sig_grs = %llx\n",sig_grs>>26);
-			while((sig_grs>>(23+3))>1){
+			while((sig_grs>>23)>1){
 				sig_grs>>=1;
 				exp++;
 				printf("sig_grs = %llx\n",sig_grs);
@@ -127,7 +127,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			if(sig_grs&0x1)
 			{
 				sig_grs++;
-				while((sig_grs>>(23+3))>1){
+				while((sig_grs>>23)>1){
 					sig_grs>>=1;
 					exp++;
 				}
