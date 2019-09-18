@@ -106,8 +106,9 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		//assert(0);
 		uint32_t last_3_bits =sig_grs&0x7;
-		//printf("sig_grs = %llx\n",sig_grs);
-		//printf("last_3_bits = %x\n",last_3_bits);
+		printf("sig_grs = %llx\n",sig_grs);
+		printf("last_3_bits = %x\n",last_3_bits);
+		printf("sig_grs = %llx\n",sig_grs>>26);
 		if(last_3_bits>4){
 			sig_grs>>=3;
 			//printf("sig_grs = %llx\n",sig_grs);
