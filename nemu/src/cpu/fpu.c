@@ -11,7 +11,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 
 	// normalization
 	bool overflow = false; // true if the result is INFINITY or 0 during normalize
-
+	uint32_t sticky = 0;
 	if ((sig_grs >> (23 + 3)) > 1 || exp < 0)
 	{
 		// normalize toward right
@@ -20,8 +20,15 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			   (sig_grs > 0x04 && exp < 0)				   // condition 2
 			   )
 		{
-
+			
 			/* TODO: shift right, pay attention to sticky bit*/
+			if((sig_grs&0x3)!=0)
+			{
+				sticky=1;
+			}
+			sig_grs>>=1;
+			sig_grs|=sticky;
+			exp++;
 			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);
 		}
@@ -29,8 +36,11 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		if (exp >= 0xff)
 		{
 			/* TODO: assign the number to infinity */
-			printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
-			assert(0);
+			
+			/*printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
+			assert(0);*/
+			exp=0xff;
+			sig_grs=0;
 			overflow = true;
 		}
 		if (exp == 0)
