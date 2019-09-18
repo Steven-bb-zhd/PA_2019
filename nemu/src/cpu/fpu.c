@@ -120,6 +120,18 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				//printf("sig_grs = %llx\n",sig_grs);
 				//printf("exp = %x\n",exp);
 			}
+			if(exp>=0xff){
+				overflow=true;
+				exp=0xff;
+				sig_grs=0;
+				if(sign)
+					return N_INF_F;
+				else
+				{
+					return P_INF_F;
+				}
+				
+			}
 			//printf("sig_grs = %llx\n",sig_grs);
 			//printf("exp = %x\n",exp);
 		}
@@ -131,6 +143,17 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				while((sig_grs>>23)>1){
 					sig_grs>>=1;
 					exp++;
+				}
+				if(exp>=0xff){
+					overflow=true;
+					exp=0xff;
+					sig_grs=0;
+					if(sign)
+						return N_INF_F;
+					else
+					{
+						return P_INF_F;
+					}
 				}
 			}
 		}
