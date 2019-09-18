@@ -110,6 +110,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		printf("last_3_bits = %x\n",last_3_bits);
 		if(last_3_bits>4){
 			sig_grs>>=3;
+			printf("sig_grs = %llx\n",sig_grs);
 			sig_grs++;
 			printf("sig_grs = %llx\n",sig_grs>>26);
 			while((sig_grs>>(23+3))>1){
