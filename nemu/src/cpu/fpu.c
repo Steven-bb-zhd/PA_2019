@@ -87,7 +87,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 				sticky=1;
 			sig_grs>>=1;
 			sig_grs|=sticky;
-			//exp++;
+			exp++;
 		}
 	}
 	else if (exp == 0 && sig_grs >> (23 + 3) == 1)
@@ -101,7 +101,7 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 		/* TODO: round up and remove the GRS bits */
 		//printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 		//assert(0);
-		uint32_t last_3_bits =sig_grs&0x3;
+		uint32_t last_3_bits =sig_grs&0x7;
 		if(last_3_bits>4){
 			sig_grs>>=3;
 			sig_grs++;
