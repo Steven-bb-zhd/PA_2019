@@ -71,6 +71,12 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			sig_grs=0;
 			exp=0;
 			overflow = true;
+			if(sign){
+				return N_ZERO_F;
+			}
+			else{
+				return P_ZERO_F;
+			}
 		}
 	}
 	else if (((sig_grs >> (23 + 3)) == 0) && exp > 0)
