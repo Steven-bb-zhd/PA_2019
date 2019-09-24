@@ -354,6 +354,13 @@ int64_t alu_imul(int32_t src, int32_t dest, size_t data_size)
 {
 	int64_t res=0;
 	res = (int64_t)src*(int64_t)dest;
+	if(data_size==8)
+		res&=0xffff;
+	else if(data_size==16)
+	{
+		res&=0xffffffff;
+	}
+	
 	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_imul(src, dest, data_size);
