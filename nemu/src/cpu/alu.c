@@ -261,8 +261,8 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 		cpu.eflags.OF=!(~(dest_neg^(~src_neg))&(dest_neg^diff_neg));
 		return;*/
 	}
-	uint32_t src_neg = ~(src)+1;
-	set_OF_add(result,src,dest,data_size);
+	uint32_t src_neg = ~(src)+1+1;
+	set_OF_add(result,src_neg,dest,data_size);
 	return;
 }
 
@@ -278,7 +278,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	set_PF(res,data_size);
 	set_ZF(res,data_size);
 	set_SF(res,data_size);
-	set_OF_add(res,~(src+1)+1,dest,data_size);
+	set_OF_sub(res,dest,~src+1,data_size);
 	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sub(src, dest, data_size);
