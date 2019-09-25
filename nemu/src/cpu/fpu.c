@@ -41,13 +41,16 @@ inline uint32_t internal_normalize(uint32_t sign, int32_t exp, uint64_t sig_grs)
 			/*printf("\e[0;31mPlease implement me at fpu.c\e[0m\n");
 			assert(0);*/
 			overflow = true;
-			if(sign){
+			/*if(sign){
 				return N_INF_F;
 			}
 			else
 			{
 				return P_INF_F;
-			}
+			}*/
+			exp=0xff;
+			sig_grs=0;
+			overflow=true;
 			
 		}
 		if (exp == 0)
