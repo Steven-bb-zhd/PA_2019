@@ -110,7 +110,7 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 		uint8_t res_8_bits_dest=dest&0x80;
 		uint8_t res_8_bits_result=result&0x80;
 		if(res_8_bits_src==res_8_bits_dest){
-			if(res_8_bits_src!=res_8_bits_result)
+			if(res_8_bits_dest!=res_8_bits_result)
 				cpu.eflags.OF = 1;
 			else
 				cpu.eflags.OF = 0;
@@ -127,7 +127,7 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 		uint16_t res_16_bits_dest=dest&0x8000;
 		uint16_t res_16_bits_result=result&0x8000;
 		if(res_16_bits_src==res_16_bits_dest){
-			if(res_16_bits_src!=res_16_bits_result)
+			if(res_16_bits_dest!=res_16_bits_result)
 				cpu.eflags.OF = 1;
 			else
 				cpu.eflags.OF = 0;
@@ -141,7 +141,7 @@ void set_OF_add(uint32_t result,uint32_t src,uint32_t dest,size_t data_size){
 		uint32_t res_32_bits_dest=dest&0x80000000;
 		uint32_t res_32_bits_result=result&0x80000000;
 		if(res_32_bits_src==res_32_bits_dest){
-			if(res_32_bits_src!=res_32_bits_result)
+			if(res_32_bits_dest!=res_32_bits_result)
 				cpu.eflags.OF = 1;
 			else
 				cpu.eflags.OF = 0;
