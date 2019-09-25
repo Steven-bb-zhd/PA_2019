@@ -261,7 +261,7 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 		cpu.eflags.OF=!(~(dest_neg^(~src_neg))&(dest_neg^diff_neg));
 		return;*/
 	}
-	uint32_t src_not = ~(src+1)+1;
+	uint32_t src_not = ~(src)+1;
 	set_OF_add(result,src_not,dest,data_size);
 	return;
 }
