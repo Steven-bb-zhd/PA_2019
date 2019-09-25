@@ -278,7 +278,7 @@ uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 	set_PF(res,data_size);
 	set_ZF(res,data_size);
 	set_SF(res,data_size);
-	set_OF_sub(res,dest,~src+1,data_size);
+	set_OF_add(res,dest,~src+1,data_size);
 	return res;
 #ifdef NEMU_REF_ALU
 	return __ref_alu_sub(src, dest, data_size);
