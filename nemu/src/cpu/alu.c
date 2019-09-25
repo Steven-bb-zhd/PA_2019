@@ -269,7 +269,7 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 {
 	uint32_t res=0;
-	res=dest+(~src)+1;
+	res=dest-src;
 	if(data_size==8)
 		res=res&0xff;
 	else if(data_size==16)
