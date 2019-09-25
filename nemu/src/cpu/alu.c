@@ -244,22 +244,22 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 		dest=dest&0xff;
 		src=src&0xff;
 		result=result&0xff;
-		uint8_t dest_neg=dest>>7;
+		/*uint8_t dest_neg=dest>>7;
 		uint8_t src_neg=src>>7;
 		uint8_t diff_neg=(dest+(~src)+1)>>7;
 		cpu.eflags.OF=!(~(dest_neg^(~src_neg))&(dest_neg^diff_neg));
-		return;
+		return;*/
 	}
 	else if(data_size==16)
 	{
 		dest=dest&0xffff;
 		src=src&0xffff;
 		result=result&0xffff;
-		uint16_t dest_neg=dest>>15;
+		/*uint16_t dest_neg=dest>>15;
 		uint16_t src_neg=src>>15;
 		uint16_t diff_neg=(dest+(~src)+1)>>15;
 		cpu.eflags.OF=!(~(dest_neg^(~src_neg))&(dest_neg^diff_neg));
-		return;
+		return;*/
 	}
 	uint32_t src_neg = ~(src+1)+1;
 	set_OF_add(result,src_neg,dest,data_size);
@@ -269,7 +269,7 @@ void set_OF_sub(uint32_t result, uint32_t dest, uint32_t src, size_t data_size){
 uint32_t alu_sub(uint32_t src, uint32_t dest, size_t data_size)
 {
 	uint32_t res=0;
-	res=dest-src;
+	res=dest+(~src)+1;
 	if(data_size==8)
 		res=res&0xff;
 	else if(data_size==16)
