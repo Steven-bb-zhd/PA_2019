@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_fun(push_ebp_v){
+make_instr_func(push_ebp_v){
     OPERAND opr_ebp;
     int len=1;
     opr_ebp.type=OPR_MEM;
