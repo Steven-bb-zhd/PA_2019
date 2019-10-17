@@ -14,7 +14,7 @@ make_instr_func(push_ebp_v){
     return len;
 }
 
-make_instr_func(push_ebp_v){
+make_instr_func(push_ebx_v){
     OPERAND opr_ebx;
     int len=1;
     opr_ebx.type=OPR_MEM;
