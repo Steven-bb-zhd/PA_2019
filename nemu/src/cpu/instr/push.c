@@ -9,6 +9,7 @@ make_instr_fun(push_ebp_v){
     opr_ebp.sreg=SREG_SS;
     cpu.esp-=data_size/8;
     opr_ebp.addr=cpu.esp;
+    operand_write(&opr_ebp);
     print_asm_0("push   ebp","",len);
     return len;
 }
