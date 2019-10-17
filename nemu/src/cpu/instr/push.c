@@ -13,3 +13,17 @@ make_instr_func(push_ebp_v){
     print_asm_0("push   ebp","",len);
     return len;
 }
+
+make_instr_func(push_ebp_v){
+    OPERAND opr_ebx;
+    int len=1;
+    opr_ebx.type=OPR_MEM;
+    opr_ebx.data_size=data_size;
+    opr_ebx.sreg=SREG_SS;
+    opr_ebx.val=cpu.ebx;
+    cpu.esp-=data_size/8;
+    opr_ebx.addr=cpu.esp;
+    operand_read(&opr_ebx);
+    print_asm_0("push   ebx","",len);
+    return len;
+}

@@ -25,4 +25,5 @@ extern uint8_t data_size;
 /* TODO: add more instructions here */
 int jmp_near(uint32_t eip,uint8_t opcode);
 int push_ebp_v(uint32_t eip,uint8_t opcode);
+int push_ebx_v(uint32_t eip,uint8_t opcode);
 #endif
