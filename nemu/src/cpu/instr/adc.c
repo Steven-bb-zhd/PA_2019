@@ -5,7 +5,7 @@ make_instr_func(adc_i2rm_bv){
     int len=1;
     imm.data_size=8;
     rm.data_size=data_size;
-    len+=modrm_opcode(eip,&rm);
+    len+=modrm_opcode(eip+len,&rm);
     operand_read(&rm);
 
     imm.type=OPR_IMM;
