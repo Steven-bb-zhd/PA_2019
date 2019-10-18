@@ -81,7 +81,7 @@ void operand_write(OPERAND *opr)
 		break;
 	case OPR_REG:
 		// data size here
-		// printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
+		printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
 		switch (opr->data_size)
 		{
 		case 8:
