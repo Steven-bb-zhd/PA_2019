@@ -17,6 +17,6 @@ make_instr_func(and_i2rm_bv){
     rm.val=sign_ext(rm.val,rm.data_size);
     rm.val=alu_and(imm.val,rm.val,rm.data_size);
     operand_write(&rm);
-    print_asm_2("adn","",len,&imm,&rm);
+    print_asm_2("and","",len,&imm,&rm);
     return len;
 }
