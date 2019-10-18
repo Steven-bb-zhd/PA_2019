@@ -16,6 +16,5 @@ make_instr_func(call_near){
     cpu.eip+=offset;
     opr_eip.val=cpu.eip;
     operand_write(&opr_eip);
-    return 0;
-
+    return 5;
 }
