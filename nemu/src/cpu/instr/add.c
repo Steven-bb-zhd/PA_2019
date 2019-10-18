@@ -3,7 +3,7 @@
 make_instr_func(add_i2rm_bv){
     OPERAND rm,imm;
     int len=1;
-    imm.data_size=data_size;
+    imm.data_size=8;
     rm.data_size=data_size;
     len+=modrm_opcode_rm(eip+1,&opcode,&rm);
     operand_read(&rm);
