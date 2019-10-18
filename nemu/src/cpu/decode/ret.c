@@ -12,6 +12,6 @@ make_instr_func(ret_near){
     printf("opr_eip=%x\n",opr_eip.val);
     cpu.esp+=data_size/8;
     cpu.eip=opr_eip.val;
-    eip=opr_eip.val;
+    //eip=opr_eip.val;
     return 0;
 }
