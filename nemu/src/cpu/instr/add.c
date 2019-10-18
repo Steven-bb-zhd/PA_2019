@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_func(add_i2m_bv){
+make_instr_func(add_i2rm_bv){
     OPERAND rm,imm;
     int len=1;
     imm.data_size=data_size;

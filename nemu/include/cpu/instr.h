@@ -27,4 +27,6 @@ int jmp_near(uint32_t eip,uint8_t opcode);
 int push_ebp_v(uint32_t eip,uint8_t opcode);
 int push_ebx_v(uint32_t eip,uint8_t opcode);
 int group_1_bv(uint32_t eip,uint8_t opcode);
+int add_i2rm_bv(uint32_t eip,uint8_t opcode);
+int adc_i2rm_bv(uint32_t eip,uint8_t opcode);
 #endif
