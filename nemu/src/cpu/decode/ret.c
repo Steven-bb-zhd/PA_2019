@@ -10,5 +10,5 @@ make_instr_func(ret_near){
     cpu.esp+=data_size/8;
     cpu.eip=opr_eip.val;
     eip=opr_eip.val;
-    return 5;
+    return 0;
 }
