@@ -8,5 +8,5 @@ make_instr_func(ret_near){
     operand_read(&opr_eip);
     cpu.esp+=data_size/8;
     cpu.eip=opr_eip.val;
-    return 0;
+    return 5;
 }
