@@ -23,7 +23,7 @@ make_instr_func(push_ebx_v){
     opr_ebx.val=cpu.ebx;
     cpu.esp-=data_size/8;
     opr_ebx.addr=cpu.esp;
-    operand_read(&opr_ebx);
+    operand_write(&opr_ebx);
     print_asm_0("push   ebx","",len);
     return len;
 }
