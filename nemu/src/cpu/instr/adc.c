@@ -28,4 +28,4 @@ make_instr_func(adc_i2rm_bv){
     return len;
 }
 
-make_instr_impl_2op(adc,i,rm,v);
+make_instr_impl_2op(adc,i,rm,v)

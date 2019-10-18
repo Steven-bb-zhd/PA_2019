@@ -41,4 +41,5 @@ int group_1_v(uint32_t eip,uint8_t opcode);
 int add_i2rm_v(uint32_t eip,uint8_t opcode);
 int or_i2rm_v(uint32_t eip,uint8_t opcode);
 int adc_i2rm_v(uint32_t eip,uint8_t opcode);
+int sbb_i2rm_v(uint32_t eip,uint8_t opcode);
 #endif
