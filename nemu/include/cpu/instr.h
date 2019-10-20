@@ -50,4 +50,5 @@ int jmp_short(uint32_t eip,uint8_t opcode);
 int jna_short(uint32_t eip,uint8_t opcode);
 int lea(uint32_t eip,uint8_t opcode);
 int cmp_r2rm_v(uint32_t eip,uint8_t opcode);
+int je_short(uint32_t eip,uint8_t opcode);
 #endif
