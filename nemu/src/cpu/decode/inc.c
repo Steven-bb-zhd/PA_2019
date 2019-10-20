@@ -6,7 +6,9 @@ static void instr_execute_1op(){
     operand_write(&opr_src);
 }
 
-make_instr_func(inc_rm_v){
+make_instr_impl_1op(inc,rm,v);
+
+/*make_instr_func(inc_rm_v){
     OPERAND rm;
     int len=1;
     rm.data_size=data_size;
@@ -16,4 +18,4 @@ make_instr_func(inc_rm_v){
     operand_write(&rm);
     print_asm_1("inc","",len,&rm);
     return len;
-}
+}*/
