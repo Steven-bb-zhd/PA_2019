@@ -53,4 +53,5 @@ int cmp_r2rm_v(uint32_t eip,uint8_t opcode);
 int je_short(uint32_t eip,uint8_t opcode);
 int inc_rm_v(uint32_t eip,uint8_t opcode);
 int dec_rm_v(uint32_t eip,uint8_t opcode);
+int push_rm_v(uint32_t eip,uint8_t opcode);
 #endif
