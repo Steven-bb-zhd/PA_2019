@@ -42,3 +42,18 @@ make_instr_func(push_rm_v){
     print_asm_0("push   rm","",len);
     return len;
 }
+
+make_instr_func(push_edi_v){
+    OPERAND rm;
+    int len=1;
+    rm.data_size=data_size;
+    rm.type=OPR_MEM;
+    len+=modrm_opcode_rm(eip+1,&opcode,&rm);
+    operand_read(&rm);
+    cpu.esp-=data_size/8;
+    rm.sreg=SREG_SS;
+    rm.addr=cpu.esp;
+    operand_write(&rm);
+    print_asm_0("push   rm","",len);
+    return len;
+}
