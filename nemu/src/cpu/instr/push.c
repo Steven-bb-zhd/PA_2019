@@ -48,8 +48,9 @@ make_instr_func(push_edi_v){
     int len=1;
     opr_edi.data_size=data_size;
     opr_edi.type=OPR_MEM;
-    len+=modrm_opcode_rm(eip+1,&opcode,&opr_edi);
-    operand_read(&opr_edi);
+    //len+=modrm_opcode_rm(eip+1,&opcode,&opr_edi);
+    //operand_read(&opr_edi);
+    opr_edi.val=cpu.edi;
     cpu.esp-=data_size/8;
     opr_edi.sreg=SREG_SS;
     opr_edi.addr=cpu.esp;
