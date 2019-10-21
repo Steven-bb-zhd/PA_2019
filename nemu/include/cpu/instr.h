@@ -69,4 +69,5 @@ int jbe_v(uint32_t eip,uint8_t opcde);
 int push_edx_v(uint32_t eip,uint8_t opcode);
 int push_r_v(uint32_t eip,uint8_t opcode);
 int push_eax_v(uint32_t eip,uint8_t opcode);
+int adc_r2rm_v(uint32_t eip,uint8_t opcode);;
 #endif
