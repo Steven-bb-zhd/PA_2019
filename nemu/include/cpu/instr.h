@@ -72,4 +72,6 @@ int push_eax_v(uint32_t eip,uint8_t opcode);
 int adc_r2rm_v(uint32_t eip,uint8_t opcode);
 int add_i2a_v(uint32_t eip,uint8_t opcode);
 int pop_r_v(uint32_t eip,uint8_t opcode);
+int pop_ebx_v(uint32_t eip,uint8_t opcode);
+int pop_ebp_v(uint32_t eip,uint8_t opcode);
 #endif
