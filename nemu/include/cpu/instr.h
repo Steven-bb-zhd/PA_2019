@@ -55,5 +55,5 @@ int inc_rm_v(uint32_t eip,uint8_t opcode);
 int dec_rm_v(uint32_t eip,uint8_t opcode);
 int push_rm_v(uint32_t eip,uint8_t opcode);
 int call_near_indirect(uint32_t eip,uint8_t opcode);
-int jmp_near_indirect(uint32_t eip,uint8_t opcode);
+int jmp_rm_v(uint32_t eip,uint8_t opcode);
 #endif
