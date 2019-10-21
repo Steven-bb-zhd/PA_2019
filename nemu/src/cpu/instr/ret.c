@@ -16,7 +16,7 @@ make_instr_func(ret_near){
     }
     else
     {
-        cpu.esi=opr_eip.val;
+        cpu.eip=opr_eip.val;
     }
     
     //eip=opr_eip.val;
