@@ -20,7 +20,13 @@ make_instr_func(pop_ebx_v){
     opr_ebx.addr=cpu.esp;
     operand_read(&opr_ebx);
     cpu.esp+=data_size/8;
-    cpu.ebx=opr_ebx.val;
+    if(data_size==16){
+        cpu.ebx=(opr_ebx.val&0xffff)|(cpu.ebx&0xffff0000);
+    }
+    else
+    {
+        cpu.ebx=opr_ebx.val;
+    }
     print_asm_0("pop    ebx","",len);
     return len;
 }
@@ -34,7 +40,13 @@ make_instr_func(pop_ebp_v){
     opr_ebp.addr=cpu.esp;
     operand_read(&opr_ebp);
     cpu.esp+=data_size/8;
-    cpu.ebp=opr_ebp.val;
+    if(data_size==16){
+        cpu.ebp=(opr_ebp.val&0xffff)|(cpu.ebp&0xffff0000);
+    }
+    else
+    {
+        cpu.ebp=opr_ebp.val;
+    }
     print_asm_0("pop    ebp","",len);
     return len;
 }
