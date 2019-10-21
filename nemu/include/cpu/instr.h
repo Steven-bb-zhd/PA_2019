@@ -58,7 +58,7 @@ int call_near_indirect(uint32_t eip,uint8_t opcode);
 int jmp_rm_v(uint32_t eip,uint8_t opcode);
 int test_r2rm_v(uint32_t eip,uint8_t opcode);
 int jg_b(uint32_t eip,uint8_t opcode);
-int jle_b(uint32_t eip,uint8_t opcode);
+int jng_b(uint32_t eip,uint8_t opcode);
 int add_r2rm_v(uint32_t eip,uint8_t opcode);
 int add_r2rm_b(uint32_t eip,uint8_t opcode);
 #endif
