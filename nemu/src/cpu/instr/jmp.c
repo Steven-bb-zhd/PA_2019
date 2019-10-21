@@ -36,7 +36,7 @@ make_instr_func(jmp_short){
 
 }
 
-make_instr_func(jmp_near_indirect){
+make_instr_func(jmp_rm_v){
         OPERAND rm;
         int len=1;
         rm.data_size=data_size;
