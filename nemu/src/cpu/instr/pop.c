@@ -36,7 +36,7 @@ make_instr_func(pop_ebp_v){
     opr_ebp.data_size=data_size;
     opr_ebp.sreg=SREG_SS;
     opr_ebp.addr=cpu.esp;
-    cpu.ebp+=data_size/8;
+    cpu.esp+=data_size/8;
     operand_read(&opr_ebp);
     if(data_size==16){
         cpu.ebp=(opr_ebp.val&0xffff)|(cpu.ebp&0xffff0000);
