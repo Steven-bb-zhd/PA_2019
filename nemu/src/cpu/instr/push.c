@@ -84,3 +84,17 @@ make_instr_func(push_ecx_v){
     print_asm_0("push   ecx","",len);
     return len;
 }
+
+make_instr_func(push_edx_v){
+    OPERAND opr_edx;
+    int len=1;
+    opr_edx.type=OPR_MEM;
+    opr_edx.data_size=data_size;
+    opr_edx.sreg=SREG_SS;
+    opr_edx.val=cpu.edx;
+    cpu.esp-=data_size/8;
+    opr_edx.addr=cpu.esp;
+    operand_write(&opr_edx);
+    print_asm_0("push   edx","",len);
+    return len;
+}
