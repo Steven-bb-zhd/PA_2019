@@ -40,4 +40,5 @@ make_instr_func(push_rm_v){
     rm.addr=cpu.esp;
     operand_write(&rm);
     print_asm_0("push   rm","",len);
+    return len;
 }
