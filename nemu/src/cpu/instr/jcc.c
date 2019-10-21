@@ -72,3 +72,20 @@ make_instr_func(jg_b){
 	}
 	return len;
 }
+
+make_instr_func(jle_b){
+	OPERAND imm;
+	int len=1;
+	imm.type=OPR_IMM;
+	imm.data_size=8;
+	imm.addr=eip+1;
+	operand_read(&imm);
+	len+=1;
+	operand_read(&imm);
+	len+=1;
+	print_asm_1("jle_b","",len,&imm);
+	if(cpu.eflags.ZF==1&&(cpu.eflags.SF!=cpu.eflags.OF)){
+		len+=(int8_t)imm.val;
+	}
+	return len;
+}
