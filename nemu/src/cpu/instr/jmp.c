@@ -44,16 +44,15 @@ make_instr_func(jmp_near_indirect){
         len+=modrm_rm(eip+len,&rm);
         operand_read(&rm);
         print_asm_1("jmp rm","",len,&rm);
-        if(data_size==16||data_size==32)
-                if(data_size==16)
-                {
-                        rm.val&=0xffff;
-                        cpu.eip=rm.val;
-                }
-                else
-                {
-                        cpu.eip=rm.val;
-                }
+        if(data_size==16)
+        {
+                rm.val&=0xffff;
+                cpu.eip=rm.val;
+        }
+        else
+        {
+                cpu.eip=rm.val;
+        }
         
         return 0;
 }
