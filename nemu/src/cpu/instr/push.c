@@ -70,3 +70,17 @@ make_instr_func(push_esi_v){
     print_asm_0("push   esi","",len);
     return len;
 }
+
+make_instr_func(push_ecx_v){
+    OPERAND opr_ecx;
+    int len=1;
+    opr_ecx.type=OPR_MEM;
+    opr_ecx.data_size=data_size;
+    opr_ecx.sreg=SREG_SS;
+    opr_ecx.val=cpu.ecx;
+    cpu.esp-=data_size/8;
+    opr_ecx.addr=cpu.esp;
+    operand_write(&opr_ecx);
+    print_asm_0("push   ebx","",len);
+    return len;
+}
