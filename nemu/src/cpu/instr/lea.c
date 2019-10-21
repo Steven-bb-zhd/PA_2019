@@ -10,7 +10,7 @@ make_instr_func(lea) {
    len+=modrm_r_rm(eip+1,&r,&m);
    operand_read(&m);
    printf("m.addr=%x\n",m.addr);
-   r.val=m.addr;
+   r.addr=m.addr;
    operand_write(&r);
    return len;
 }
