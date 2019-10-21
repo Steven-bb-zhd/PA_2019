@@ -47,7 +47,7 @@ make_instr_func(jmp_rm_v){
         if(data_size==16)
         {
                 rm.val=(int32_t)(rm.val<<16)>>16;
-                cpu.eip=rm.val&0xff;
+                cpu.eip=rm.val&0xffff;
         }
         else
         {
