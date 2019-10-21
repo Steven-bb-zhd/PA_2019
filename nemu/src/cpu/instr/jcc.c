@@ -81,7 +81,7 @@ make_instr_func(jng_b){
 	imm.addr=eip+1;
 	operand_read(&imm);
 	len+=1;
-	print_asm_1("jle_b","",len,&imm);
+	print_asm_1("jng_b","",len,&imm);
 	if(cpu.eflags.ZF==1||(cpu.eflags.SF!=cpu.eflags.OF)){
 		len+=(int8_t)imm.val;
 	}
