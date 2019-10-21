@@ -6,3 +6,5 @@ static void instr_execute_1op(){
     opr_dest.val=opr_src.val;
     operand_write(&opr_dest);
 }
+
+make_instr_impl_1op(pop,r,v);
