@@ -40,6 +40,7 @@ make_instr_func(pop_ebp_v){
     opr_ebp.addr=cpu.esp;
     operand_read(&opr_ebp);
     cpu.esp+=data_size/8;
+    printf("opr_ebp=%x\n",opr_ebp.val);
     if(data_size==16){
         cpu.ebp=(opr_ebp.val&0xffff)|(cpu.ebp&0xffff0000);
     }
