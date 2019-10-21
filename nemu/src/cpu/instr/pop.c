@@ -26,7 +26,7 @@ make_instr_func(pop_ebx_v){
     {
         cpu.ebx=opr_ebx.val;
     }
-    print_asm_1("pop    ebx","",len,&opr_ebx);
+    print_asm_0("pop    ebx","",len);
     return len;
 }
 
@@ -46,6 +46,6 @@ make_instr_func(pop_ebp_v){
     {
         cpu.ebp=opr_ebp.val;
     }
-    print_asm_1("pop    ebp","",len,&opr_ebp);
+    print_asm_0("pop    ebp","",len);
     return len;
 }
