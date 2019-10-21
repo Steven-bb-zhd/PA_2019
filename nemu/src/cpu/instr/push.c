@@ -81,6 +81,6 @@ make_instr_func(push_ecx_v){
     cpu.esp-=data_size/8;
     opr_ecx.addr=cpu.esp;
     operand_write(&opr_ecx);
-    print_asm_0("push   ebx","",len);
+    print_asm_0("push   ecx","",len);
     return len;
 }
