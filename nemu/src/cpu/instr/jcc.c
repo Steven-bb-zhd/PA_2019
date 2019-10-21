@@ -111,10 +111,11 @@ make_instr_func(jbe_v){
 	operand_read(&imm);
 	len+=data_size/8;
 	print_asm_1("jbe_v","",len,&imm);
-	if(cpu.eflags.ZF==1||cpu.eflags.CF==1)
+	if(cpu.eflags.ZF==1||cpu.eflags.CF==1){
 		if(data_size==16)
 			len+=(int16_t)imm.val;
-		if(data_size==32)
+		else
 			len+=(int32_t)imm.val;
+	}
 	return len;
 }
