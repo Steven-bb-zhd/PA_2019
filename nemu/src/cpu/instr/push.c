@@ -1,5 +1,14 @@
 #include "cpu/instr.h"
 
+static void instr_execute_1op(){
+    operand_read(&opr_src);
+    cpu.esp-=data_size/8;
+    opr_src.addr=cpu.esp;
+    operand_write(&opr_src);
+}
+
+make_instr_impl_1op(push,r,v)
+
 make_instr_func(push_ebp_v){
     OPERAND opr_ebp;
     int len=1;
@@ -96,5 +105,19 @@ make_instr_func(push_edx_v){
     opr_edx.addr=cpu.esp;
     operand_write(&opr_edx);
     print_asm_0("push   edx","",len);
+    return len;
+}
+
+make_instr_func(push_eax_v){
+    OPERAND opr_eax;
+    int len=1;
+    opr_eax.type=OPR_MEM;
+    opr_eax.data_size=data_size;
+    opr_eax.sreg=SREG_SS;
+    opr_eax.val=cpu.eax;
+    cpu.esp-=data_size/8;
+    opr_eax.addr=cpu.esp;
+    operand_write(&opr_eax);
+    print_asm_0("push   eax","",len);
     return len;
 }
