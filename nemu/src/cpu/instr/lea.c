@@ -9,7 +9,6 @@ make_instr_func(lea) {
    m.data_size=data_size;
    len+=modrm_r_rm(eip+1,&r,&m);
    //operand_read(&m);
-   printf("m.addr=%x\n",m.addr);
    r.val=m.addr;
    print_asm_2("lea","",len,&m,&r);
    operand_write(&r);
