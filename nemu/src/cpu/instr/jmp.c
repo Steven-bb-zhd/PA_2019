@@ -28,6 +28,7 @@ make_instr_func(jmp_short){
         rel.addr=eip+len;
         len+=1;
         operand_read(&rel);
+        print_asm_1("jmp_near","",len,&rel);
         int offset=sign_ext(rel.val,rel.data_size);
 
         cpu.eip=cpu.eip+offset;
