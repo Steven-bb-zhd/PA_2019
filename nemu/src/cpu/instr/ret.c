@@ -11,7 +11,14 @@ make_instr_func(ret_near){
     operand_read(&opr_eip);
     printf("opr_eip=%x\n",opr_eip.val);
     cpu.esp+=data_size/8;
-    cpu.eip=opr_eip.val;
+    if(data_size==16){
+        cpu.eip=opr_eip.val&0xffff;
+    }
+    else
+    {
+        cpu.esi=opr_eip.val;
+    }
+    
     //eip=opr_eip.val;
     return 0;
 }
