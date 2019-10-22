@@ -32,3 +32,4 @@ make_instr_func(sbb_i2rm_bv){
 }
 
 make_instr_impl_2op(sbb,i,rm,v)
+make_instr_impl_2op(sbb,i,b,v)
