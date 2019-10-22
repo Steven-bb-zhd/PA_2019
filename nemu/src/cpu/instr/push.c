@@ -122,3 +122,22 @@ make_instr_func(push_eax_v){
     print_asm_0("push   eax","",len);
     return len;
 }
+
+make_instr_func(push_i_b){
+    OPERAND imm;
+    int len=1;
+    imm.type=OPR_IMM;
+    imm.data_size=8;
+    imm.sreg=SREG_CS;
+    imm.addr=eip+len;
+    len+=1;
+    operand_read(&imm);
+    cpu.esp-=data_size/8;
+    imm.addr=cpu.esp;
+    imm.data_size=32;
+    imm.type=OPR_MEM;
+    imm.sreg=SREG_SS;
+    operand_write(&imm);
+    print_asm_1("push   i","",len,&imm);
+    return len;
+}
