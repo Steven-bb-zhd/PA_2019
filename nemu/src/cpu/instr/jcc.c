@@ -159,6 +159,14 @@ make_instr_func(jl_near){
 	len+=data_size/8;
 	print_asm_1("jl","",len,&imm);
 	if(cpu.eflags.SF!=cpu.eflags.OF)
-		len+=(int8_t)imm.val;
+	{
+		if(data_size==16)
+			len+=(int16_t)imm.val;
+		else
+		{
+			len+=imm.val;
+		}
+		
+	}
 	return len;
 }
