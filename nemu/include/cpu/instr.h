@@ -78,4 +78,5 @@ int xor_r2rm_v(uint32_t eip,uint8_t opcode);
 int or_r2rm_v(uint32_t eip,uint8_t opcode);
 int leave(uint32_t eip,uint8_t opcode);
 int dec_r_v(uint32_t eip,uint8_t opcode);
+int sub_rm2r_v(uint32_t eip,uint8_t opcode);
 #endif
