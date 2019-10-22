@@ -12,7 +12,7 @@ nemu:
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase pascal
+	./nemu/nemu --testcase bit
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
