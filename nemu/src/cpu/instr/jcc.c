@@ -149,7 +149,7 @@ make_instr_func(jbe_v){
 	return len;
 }
 
-make_instr_func(jl_near){
+make_instr_func(jl_v){
 	OPERAND imm;
 	int len=1;
 	imm.type=OPR_IMM;
