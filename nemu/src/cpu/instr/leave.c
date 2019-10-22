@@ -10,7 +10,7 @@ make_instr_func(leave){
     opr_ebp.addr=cpu.esp;
     operand_read(&opr_ebp);
     cpu.ebp=opr_ebp.val;
-    cpu.esp+=data_size/4;
+    cpu.esp+=data_size/8;
     print_asm_0("leave","",len);
     return len;
 }
