@@ -148,3 +148,17 @@ make_instr_func(jbe_v){
 	}
 	return len;
 }
+
+make_instr_func(jl_near){
+	OPERAND imm;
+	int len=1;
+	imm.type=OPR_IMM;
+	imm.data_size=data_size;
+	imm.addr=eip+1;
+	operand_read(&imm);
+	len+=data_size/8;
+	print_asm_1("jl","",len,&imm);
+	if(cpu.eflags.SF!=cpu.eflags.OF)
+		len+=(int8_t)imm.val;
+	return len;
+}
