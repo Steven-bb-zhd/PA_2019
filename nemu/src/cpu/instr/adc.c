@@ -29,4 +29,5 @@ make_instr_func(adc_i2rm_bv){
 }
 
 make_instr_impl_2op(adc,i,rm,v)
+make_instr_impl_2op(adc,i,rm,b)
 make_instr_impl_2op(adc,r,rm,v)
