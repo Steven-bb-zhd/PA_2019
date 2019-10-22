@@ -132,7 +132,7 @@ make_instr_func(push_i_b){
     imm.addr=eip+len;
     len+=1;
     operand_read(&imm);
-    cpu.esp-=data_size/8;
+    cpu.esp-=4;
     imm.addr=cpu.esp;
     imm.data_size=32;
     imm.type=OPR_MEM;
