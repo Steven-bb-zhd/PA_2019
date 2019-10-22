@@ -12,7 +12,7 @@ nemu:
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase quick-sort
+	./nemu/nemu --testcase pascal
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
