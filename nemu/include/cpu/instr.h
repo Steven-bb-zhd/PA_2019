@@ -87,5 +87,6 @@ int jge_short_(uint32_t eip,uint8_t opcode);
 int jl_near(uint32_t eip,uint8_t opcode);
 int jle_near(uint32_t eip,uint8_t opcode);
 int sub_r2rm_v(uint32_t eip,uint8_t opcode);
+int and_rm2r_v(uint32_t eip,uint8_t opcode);
 int and_r2rm_v(uint32_t eip,uint8_t opcode);
 #endif
