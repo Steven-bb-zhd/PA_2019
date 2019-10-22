@@ -33,7 +33,7 @@ make_instr_func(jmp_short){
 
         cpu.eip=cpu.eip+offset;
 
-        return 1+data_size/8;
+        return 1+rel.data_size/8;
 
 }
 
