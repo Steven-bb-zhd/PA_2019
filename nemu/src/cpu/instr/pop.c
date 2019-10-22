@@ -20,6 +20,7 @@ make_instr_func(pop_ebx_v){
     opr_ebx.addr=cpu.esp;
     operand_read(&opr_ebx);
     cpu.esp+=data_size/8;
+    printf("opr_ebx=%x\n",opr_ebx.val);
     if(data_size==16){
         cpu.ebx=(opr_ebx.val&0xffff)|(cpu.ebx&0xffff0000);
     }
