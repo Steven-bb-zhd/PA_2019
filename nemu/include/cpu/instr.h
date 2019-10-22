@@ -85,4 +85,5 @@ int push_i_b(uint32_t eip,uint8_t opcode);
 int cmp_rm2r_v(uint32_t eip,uint8_t opcode);
 int jge_short_(uint32_t eip,uint8_t opcode);
 int jl_near(uint32_t eip,uint8_t opcode);
+int jle_near(uint32_t eip,uint8_t opcode);
 #endif
