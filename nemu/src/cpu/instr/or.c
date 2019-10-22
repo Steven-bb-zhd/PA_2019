@@ -34,3 +34,4 @@ make_instr_func(or_i2rm_bv){
 }
 
 make_instr_impl_2op(or,i,rm,v)
+make_instr_impl_2op(or,r,rm,v);
