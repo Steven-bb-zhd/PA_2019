@@ -32,5 +32,6 @@ make_instr_func(sub_i2rm_bv){
 }
 
 make_instr_impl_2op(sub,i,rm,v)
+make_instr_impl_2op(sub,i,rm,b)
 make_instr_impl_2op(sub,rm,r,v)
 make_instr_impl_2op(sub,r,rm,v)
