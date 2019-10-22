@@ -14,7 +14,7 @@ make_instr_impl_1op(pop,r,v);
 make_instr_func(pop_ebx_v){
     OPERAND opr_ebx;
     int len=1;
-    opr_ebx.type=OPR_REG;
+    opr_ebx.type=OPR_MEM;
     opr_ebx.data_size=data_size;
     opr_ebx.sreg=SREG_SS;
     opr_ebx.addr=cpu.esp;
@@ -34,7 +34,7 @@ make_instr_func(pop_ebx_v){
 make_instr_func(pop_ebp_v){
     OPERAND opr_ebp;
     int len=1;
-    opr_ebp.type=OPR_REG;
+    opr_ebp.type=OPR_MEM;
     opr_ebp.data_size=data_size;
     opr_ebp.sreg=SREG_SS;
     opr_ebp.addr=cpu.esp;

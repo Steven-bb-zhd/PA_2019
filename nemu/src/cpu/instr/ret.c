@@ -3,7 +3,7 @@
 make_instr_func(ret_near){
     OPERAND opr_eip;
     printf("eip=%x\n",eip);
-    opr_eip.type=OPR_REG;
+    opr_eip.type=OPR_MEM;
     opr_eip.data_size=data_size;
     //printf("cpu.esp=%x\n",cpu.esp);
     opr_eip.addr=cpu.esp;
