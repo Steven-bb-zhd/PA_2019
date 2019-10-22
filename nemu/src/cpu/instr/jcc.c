@@ -29,7 +29,7 @@ static void instr_execute_1op_cc_fail() {/* Do nothing */}
 jcc_helper(near)
 jcc_helper(short_)
 make_instr_impl_1op_cc(j, i, short_, ecxz)
-make_instr_impl_1op_cc(j,i,short_,ge)
+//make_instr_impl_1op_cc(j,i,short_,ge)
 
 make_instr_func(jna_short){
 	OPERAND imm;
@@ -67,7 +67,7 @@ make_instr_func(jge_b){
 	imm.addr=eip+1;
 	operand_read(&imm);
 	len+=1;
-	print_asm_1("je","",len,&imm);
+	print_asm_1("jge","",len,&imm);
 	if(cpu.eflags.OF==cpu.eflags.SF)
 		len+=(int8_t)imm.val;
 	return len;
