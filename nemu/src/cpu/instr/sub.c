@@ -26,7 +26,7 @@ make_instr_func(sub_i2rm_bv){
     rm.val=sign_ext(rm.val,rm.data_size);
 
     rm.val=alu_sub(imm.val,rm.val,rm.data_size);
-    operand_read(&rm);
+    operand_write(&rm);
     print_asm_2("sub","",len,&imm,&rm);
     return len;
 }
