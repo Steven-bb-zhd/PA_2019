@@ -31,7 +31,7 @@ jcc_helper(short_)
 make_instr_impl_1op_cc(j, i, short_, ecxz)
 //make_instr_impl_1op_cc(j,i,short_,ge)
 
-make_instr_func(jna_short){
+/*make_instr_func(jna_short){
 	OPERAND imm;
 	int len=1;
 	imm.type=OPR_IMM;
@@ -169,4 +169,4 @@ make_instr_func(jl_v){
 		
 	}
 	return len;
-}
+}*/
