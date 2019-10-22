@@ -11,7 +11,7 @@ static void instr_execute_2op(){
 make_instr_impl_2op(cmp,i,rm,v)
 make_instr_impl_2op(cmp,r,rm,v)
 make_instr_impl_2op(cmp,rm,r,v)
-make_instr_impl_2op(cmp,i,a,v)
+make_instr_impl_2op(cmp,i,a,b)
 
 make_instr_func(cmps_v)
 {
