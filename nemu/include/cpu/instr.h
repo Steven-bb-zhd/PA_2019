@@ -118,4 +118,8 @@ int div_rm2a_v(uint32_t eip,uint8_t opcode);
 int div_rm2a_b(uint32_t eip,uint8_t opcode);
 int test_i2rm_b(uint32_t eip,uint8_t opcode);
 int test_i2rm_v(uint32_t eip,uint8_t opcode);
+int sbb_r2rm_v(uint32_t eip,uint8_t opcode);
+int sbb_r2rm_b(uint32_t eip,uint8_t opcode);
+int sbb_rm2r_v(uint32_t eip,uint8_t opcode);
+int sbb_rm2r_b(uint32_t eip,uint8_t opcode);
 #endif
