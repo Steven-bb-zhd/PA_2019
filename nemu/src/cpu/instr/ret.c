@@ -12,6 +12,7 @@ make_instr_func(ret_near){
     operand_read(&opr_eip);
     //printf("opr_eip=%x\n",opr_eip.val);
     cpu.esp+=data_size/8;
+    print_asm_0("ret_near","",len);
     //printf("cpu.esp=%x\n",cpu.esp);
     if(data_size==16){
         cpu.eip=opr_eip.val&0xffff;
@@ -22,7 +23,6 @@ make_instr_func(ret_near){
     }
     
     //eip=opr_eip.val;
-    print_asm_0("ret_near","",len);
     return 0;
 }
 
