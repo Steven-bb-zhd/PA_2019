@@ -66,16 +66,16 @@ make_instr_func(pop_edi_v){
     opr_edi.data_size=data_size;
     opr_edi.sreg=SREG_SS;
     opr_edi.addr=cpu.esp;
-    operand_read(&opr_ebx);
+    operand_read(&opr_edi);
     cpu.esp+=data_size/8;
     //printf("opr_ebx=%x\n",opr_ebx.val);
     if(data_size==16){
-        cpu.ebx=(opr_ebx.val&0xffff)|(cpu.ebx&0xffff0000);
+        cpu.edi=(opr_edi.val&0xffff)|(cpu.edi&0xffff0000);
     }
     else
     {
-        cpu.ebx=opr_ebx.val;
+        cpu.edi=opr_edi.val;
     }
-    print_asm_0("pop    ebx","",len);
+    print_asm_0("pop    edi","",len);
     return len;
 }
