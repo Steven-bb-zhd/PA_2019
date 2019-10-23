@@ -14,6 +14,7 @@ make_instr_func(rep_repe)
 	}
 	while (cpu.gpr[REG_ECX]._32 != 0)
 	{
+		printf("op=%x\n",op);
 		opcode_entry[op](eip + 1, op);
 		cpu.gpr[REG_ECX]._32--;
 		/**/
