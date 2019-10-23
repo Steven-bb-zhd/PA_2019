@@ -145,4 +145,5 @@ int jp_near(uint32_t eip,uint8_t opcode);
 int jnp_near(uint32_t eip,uint8_t opcode);
 int jge_near(uint32_t eip,uint8_t opcode);
 int jg_near(uint32_t eip,uint8_t opcode);
+int jae_short(uint32_t eip,uint8_t opcode);
 #endif
