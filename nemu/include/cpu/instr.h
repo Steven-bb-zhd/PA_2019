@@ -132,4 +132,5 @@ int stos_b(uint32_t eip,uint8_t opcode);
 int cmps_v(uint32_t eip,uint8_t opcode);
 int cmps_b(uint32_t eip,uint8_t opcode);
 int not_rm_b(uint32_t eip,uint8_t opcode);
+int je_near(uint32_t eip,uint8_t opcode);
 #endif
