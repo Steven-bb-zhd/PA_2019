@@ -149,4 +149,8 @@ int jae_short_(uint32_t eip,uint8_t opcode);
 int jo_short_(uint32_t eip,uint8_t opcode);
 int jno_short_(uint32_t eip,uint8_t opcode);
 int ja_short_(uint32_t eip,uint8_t opcode);
+int js_short_(uint32_t eip,uint8_t opcode);
+int jns_short_(uint32_t eip,uint8_t opcode);
+int jp_short_(uint32_t eip,uint8_t opcode);
+int jnp_short_(uint32_t eip,uint8_t opcode);
 #endif
