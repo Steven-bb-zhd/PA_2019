@@ -2,6 +2,7 @@
 
 make_instr_func(ret_near){
     OPERAND opr_eip;
+    int len=1;
     //printf("eip=%x\n",eip);
     opr_eip.type=OPR_MEM;
     opr_eip.data_size=data_size;
@@ -32,7 +33,7 @@ make_instr_func(ret_near_imm16){
     imm.data_size=16;
     imm.addr=eip+len;
     operand_read(&imm);
-    len+=2;
+    len+=1;
     opr_eip.type=OPR_MEM;
     opr_eip.data_size=data_size;
     cpu.esp+=data_size/8;
