@@ -128,4 +128,5 @@ int cmp_r2rm_b(uint32_t eip,uint8_t opcode);
 int cmp_rm2r_b(uint32_t eip,uint8_t opcode);
 int test_i2a_v(uint32_t eip,uint8_t opcode);
 int test_i2a_b(uint32_t eip,uint8_t opcode);
+int stos_b(uint32_t eip,uint8_t opcode);
 #endif
