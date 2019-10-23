@@ -15,6 +15,7 @@ static void instr_execute_1op(){
 }
 
 make_instr_impl_1op(push,r,v)
+maaaaaaaake_insssssssssstr
 
 make_instr_func(push_ebp_v){
     OPERAND opr_ebp;
