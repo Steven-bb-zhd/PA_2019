@@ -10,7 +10,7 @@ static void instr_execute_2op(){
 }
 
 
-make_instr_func(xor_i2rm_bv){
+/*make_instr_func(xor_i2rm_bv){
     OPERAND imm,rm;
     int len=1;
     imm.data_size=8;
@@ -29,8 +29,9 @@ make_instr_func(xor_i2rm_bv){
     operand_write(&rm);
     print_asm_2("xor","",len,&imm,&rm);
     return len;
-}
+}*/
 
+make_instr_impl_2op(xor,i,rm,bv)
 make_instr_impl_2op(xor,i,rm,v)
 make_instr_impl_2op(xor,i,rm,b)
 make_instr_impl_2op(xor,r,rm,v)
