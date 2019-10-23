@@ -12,7 +12,7 @@ nemu:
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase fact
+	./nemu/nemu --testcase struct
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
