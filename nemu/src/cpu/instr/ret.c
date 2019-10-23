@@ -32,6 +32,7 @@ make_instr_func(ret_near_imm16){
     imm.type=OPR_IMM;
     imm.data_size=16;
     imm.addr=eip+len;
+    opr_eip.addr=cpu.esp;
     operand_read(&imm);
     len+=1;
     opr_eip.type=OPR_MEM;
