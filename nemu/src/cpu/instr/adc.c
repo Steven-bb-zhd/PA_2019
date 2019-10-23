@@ -9,7 +9,7 @@ static void instr_execute_2op(){
     operand_write(&opr_dest);
 }
 
-make_instr_func(adc_i2rm_bv){
+/*/make_instr_func(adc_i2rm_bv){
     OPERAND imm,rm;
     int len=1;
     imm.data_size=8;
@@ -26,8 +26,9 @@ make_instr_func(adc_i2rm_bv){
     rm.val=alu_adc(imm.val,rm.val,rm.data_size);
     operand_write(&rm);
     return len;
-}
+}*/
 
+make_instr_impl_2op(adc,i,rm,bv)
 make_instr_impl_2op(adc,i,rm,v)
 make_instr_impl_2op(adc,i,rm,b)
 make_instr_impl_2op(adc,r,rm,v)
