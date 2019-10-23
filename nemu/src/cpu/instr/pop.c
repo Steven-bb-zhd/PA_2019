@@ -1,10 +1,9 @@
 #include "cpu/instr.h"
 
 static void instr_execute_1op(){
-    opr_src.addr=cpu.esp;
     operand_read(&opr_src);
     OPERAND temp;
-    temp.addr=opr_src.addr;
+    temp.addr=cpu.esp;
     cpu.esp+=data_size/8;
     temp.val=opr_src.val;
     temp.type=OPR_MEM;
