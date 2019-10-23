@@ -153,4 +153,5 @@ int js_short_(uint32_t eip,uint8_t opcode);
 int jns_short_(uint32_t eip,uint8_t opcode);
 int jp_short_(uint32_t eip,uint8_t opcode);
 int jnp_short_(uint32_t eip,uint8_t opcode);
+int jb_short_(uint32_t eip,uint8_t opcode);
 #endif
