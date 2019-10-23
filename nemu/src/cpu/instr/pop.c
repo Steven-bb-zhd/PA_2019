@@ -8,7 +8,7 @@ static void instr_execute_1op(){
     temp.val=opr_src.val;
     temp.type=OPR_MEM;
     temp.data_size=data_size;
-    temp.val=opr_src.val;
+    //temp.val=opr_src.val;
     //opr_dest.addr=opr_src.addr;
     //opr_dest.addr=cpu.esp;
     operand_write(&temp);
