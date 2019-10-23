@@ -125,4 +125,5 @@ int sbb_rm2r_b(uint32_t eip,uint8_t opcode);
 int imul_rm2r_v(uint32_t eip,uint8_t opcode);
 int ret_near_imm16(uint32_t eup,uint8_t opcode);
 int cmp_r2rm_b(uint32_t eip,uint8_t opcode);
+int cmp_rm2r_b(uint32_t eip,uint8_t opcode);
 #endif
