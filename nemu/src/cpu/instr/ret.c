@@ -23,3 +23,12 @@ make_instr_func(ret_near){
     //eip=opr_eip.val;
     return 0;
 }
+
+make_instr_func(ret_near_imm16){
+    OPERAND imm,opr_eip;
+    int len=1;
+    imm.type=OPR_IMM;
+    imm.data_size=16;
+    imm.addr=eip+len;
+    operand_read(&imm);
+}
