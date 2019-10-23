@@ -8,6 +8,7 @@ static void instr_execute_2op(){
     opr_dest.val=alu_sub(opr_src.val,opr_dest.val,data_size);
 }
 
+make_instr_impl_2op(cmp,i,rm,bv)
 make_instr_impl_2op(cmp,i,rm,v)
 make_instr_impl_2op(cmp,i,rm,b)
 make_instr_impl_2op(cmp,r,rm,v)
@@ -55,7 +56,7 @@ make_instr_func(cmps_b)
 	return 1;
 }
 
-make_instr_func(cmp_i2rm_bv){
+/*make_instr_func(cmp_i2rm_bv){
 	OPERAND imm,rm;
     int len=1;
     imm.data_size=8;
@@ -76,4 +77,4 @@ make_instr_func(cmp_i2rm_bv){
     //operand_write(&rm);
     print_asm_2("cmp_bv","",len,&imm,&rm);
     return len;
-}
+}*/
