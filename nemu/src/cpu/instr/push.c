@@ -2,7 +2,7 @@
 
 static void instr_execute_1op(){
     operand_read(&opr_src);
-    printf("opr_src=%x\n",opr_src.val);
+    printf("opr_src.addr=%x\n",opr_src.addr);
     cpu.esp-=data_size/8;
     OPERAND temp;
     temp.sreg=SREG_SS;
