@@ -4,7 +4,7 @@ make_instr_func(rep_repe)
 {
 	int len = 1;
 	uint8_t op = instr_fetch(eip + 1, 1);
-	printf("op=%x\n",op);
+	//printf("op=%x\n",op);
 	print_asm_0("rep", "", len + 1);
 	if (op == 0xc3)
 	{
@@ -14,7 +14,7 @@ make_instr_func(rep_repe)
 	}
 	while (cpu.gpr[REG_ECX]._32 != 0)
 	{
-		printf("op=%x\n",op);
+		//printf("op=%x\n",op);
 		opcode_entry[op](eip + 1, op);
 		cpu.gpr[REG_ECX]._32--;
 		/**/
