@@ -9,7 +9,7 @@ static void instr_execute_2op(){
     operand_write(&opr_dest);
 }
 
-make_instr_func(and_i2rm_bv){
+/*make_instr_func(and_i2rm_bv){
     OPERAND imm,rm;
     int len=1;
     imm.data_size=8;
@@ -28,7 +28,7 @@ make_instr_func(and_i2rm_bv){
     operand_write(&rm);
     print_asm_2("and","",len,&imm,&rm);
     return len;
-}
+}*/
 
 make_instr_impl_2op(and,i,rm,v)
 make_instr_impl_2op(and,i,rm,b)
@@ -36,3 +36,4 @@ make_instr_impl_2op(and,r,rm,v)
 make_instr_impl_2op(and,r,rm,b)
 make_instr_impl_2op(and,rm,r,v)
 make_instr_impl_2op(and,rm,r,b)
+make_instr_impl_2op(and,i,rm,bv);
