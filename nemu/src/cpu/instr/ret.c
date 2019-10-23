@@ -41,7 +41,7 @@ make_instr_func(ret_near_imm16){
     imm.val=sign_ext(imm.val,32);
     cpu.esp+=imm.val;
     operand_read(&opr_eip);
-    cpu.eip=opr_eip.val;
     print_asm_1("ret_near_imm16","",len,&imm);
+    cpu.eip=opr_eip.val;
     return 0;
 }
