@@ -2,13 +2,13 @@
 
 static void instr_execute_1op(){
     operand_read(&opr_src);
-    printf("opr_src.addr=%x\n",opr_src.addr);
+    //printf("opr_src.addr=%x\n",opr_src.addr);
     cpu.esp-=data_size/8;
     OPERAND temp;
     temp.sreg=SREG_SS;
     temp.type=OPR_MEM;
     temp.addr=cpu.esp;
-    printf("temp.addr=%x\n",temp.addr);
+    //printf("temp.addr=%x\n",temp.addr);
     temp.val=opr_src.val;
     temp.data_size=data_size;
     operand_write(&temp);
