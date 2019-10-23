@@ -2,13 +2,17 @@
 
 static void instr_execute_1op(){
     opr_src.addr=cpu.esp;
-    opr_dest.addr=opr_src.addr;
     operand_read(&opr_src);
+    OPERAND temp;
+    temp.addr=opr_src.addr;
     cpu.esp+=data_size/8;
-    opr_dest.val=opr_src.val;
+    temp.val=opr_src.val;
+    temp.type=OPR_MEM;
+    temp.data_size=data_size;
+    temp.val=opr_src.val;
     //opr_dest.addr=opr_src.addr;
     //opr_dest.addr=cpu.esp;
-    operand_write(&opr_dest);
+    operand_write(&temp);
 }
 
 make_instr_impl_1op(pop,r,v);
@@ -52,5 +56,26 @@ make_instr_func(pop_ebp_v){
         cpu.ebp=opr_ebp.val;
     }
     print_asm_0("pop    ebp","",len);
+    return len;
+}
+
+make_instr_func(pop_edi_v){
+    OPERAND opr_edi;
+    int len=1;
+    opr_edi.type=OPR_MEM;
+    opr_edi.data_size=data_size;
+    opr_edi.sreg=SREG_SS;
+    opr_edi.addr=cpu.esp;
+    operand_read(&opr_ebx);
+    cpu.esp+=data_size/8;
+    //printf("opr_ebx=%x\n",opr_ebx.val);
+    if(data_size==16){
+        cpu.ebx=(opr_ebx.val&0xffff)|(cpu.ebx&0xffff0000);
+    }
+    else
+    {
+        cpu.ebx=opr_ebx.val;
+    }
+    print_asm_0("pop    ebx","",len);
     return len;
 }
