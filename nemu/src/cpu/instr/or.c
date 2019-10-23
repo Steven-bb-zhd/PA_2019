@@ -9,7 +9,7 @@ static void instr_execute_2op(){
     operand_write(&opr_dest);
 }
 
-make_instr_func(or_i2rm_bv){
+/*make_instr_func(or_i2rm_bv){
     OPERAND imm,rm;
     int len=1;
 
@@ -31,8 +31,9 @@ make_instr_func(or_i2rm_bv){
     operand_write(&rm);
     return len;
 
-}
+}*/
 
+make_instr_impl_2op(or,i,rm,bv)
 make_instr_impl_2op(or,i,rm,v)
 make_instr_impl_2op(or,r,rm,v)
 make_instr_impl_2op(or,rm,r,v)
