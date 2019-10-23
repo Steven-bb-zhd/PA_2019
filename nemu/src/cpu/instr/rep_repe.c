@@ -21,5 +21,5 @@ make_instr_func(rep_repe)
 			break;
 		}
 	}
-	return 2;
+	return len + 1;
 }
