@@ -106,4 +106,6 @@ int or_r2rm_b(uint32_t eip,uint8_t opcode);
 int or_rm2r_v(uint32_t eip,uint8_t opcode);
 int or_rm2r_b(uint32_t eip,uint8_t opcode);
 int not_rm_v(uint32_t eip,uint8_t opcode);
+int neg_rm_v(uint32_t eip,uint8_t opcode);
+int neg_rm_b(uint32_t eip,uint8_t opcode);
 #endif
