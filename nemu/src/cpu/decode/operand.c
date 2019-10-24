@@ -68,12 +68,12 @@ void operand_read(OPERAND *opr)
 		assert(0);
 		break;
 	}
-	printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
+	//printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
 }
 
 void operand_write(OPERAND *opr)
 {
-	printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
+	//printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
 	switch (opr->type)
 	{
 	case OPR_MEM:
