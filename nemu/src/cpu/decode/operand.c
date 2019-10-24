@@ -74,7 +74,6 @@ void operand_write(OPERAND *opr)
 {
 	switch (opr->type)
 	{
-		printf("opr.val=%x\n",opr->val);
 	case OPR_MEM:
 		// data size here
 		//assert(opr->sreg == SREG_DS || opr->sreg == SREG_SS);
