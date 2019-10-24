@@ -9,8 +9,8 @@ static void instr_execute_1op(){
     {
         cpu.eflags.CF=1;
     }
-    opr_dest.val=-opr_src.val;
-    operand_write(&opr_dest);
+    opr_src.val=-opr_src.val;
+    operand_write(&opr_src);
 }
 
 make_instr_impl_1op(neg,rm,v)
