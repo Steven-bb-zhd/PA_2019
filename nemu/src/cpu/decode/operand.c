@@ -68,15 +68,17 @@ void operand_read(OPERAND *opr)
 		assert(0);
 		break;
 	}
+	printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
 }
 
 void operand_write(OPERAND *opr)
 {
+	printf("reg data size = %d, val = %x, addr = %x\n", opr->data_size, opr->val, opr->addr);
 	switch (opr->type)
 	{
 	case OPR_MEM:
 		// data size here
-		//assert(opr->sreg == SREG_DS || opr->sreg == SREG_SS);
+		assert(opr->sreg == SREG_DS || opr->sreg == SREG_SS);
 		vaddr_write(opr->addr, opr->sreg, opr->data_size / 8, opr->val);
 		break;
 	case OPR_REG:
