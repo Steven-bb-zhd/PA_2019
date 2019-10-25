@@ -12,7 +12,7 @@ nemu:
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase hello-str
+	./nemu/nemu --testcase quick-sort
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
