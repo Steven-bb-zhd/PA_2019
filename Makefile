@@ -12,7 +12,7 @@ nemu:
 
 run: nemu
 	$(call git_commit, "run")
-	./nemu/nemu --testcase hello-str
+	./nemu/nemu --testcase quick-sort
 
 run-kernel: nemu
 	$(call git_commit, "run-kernel")
@@ -28,7 +28,7 @@ all:
 	cd nemu && make
 	cd testcase && make
 	cd kernel && make
-dd
+
 game:
 	$(call git_commit, "compile game")
 	cd game && make
