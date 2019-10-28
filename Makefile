@@ -28,7 +28,7 @@ all:
 	cd nemu && make
 	cd testcase && make
 	cd kernel && make
-
+dd
 game:
 	$(call git_commit, "compile game")
 	cd game && make
