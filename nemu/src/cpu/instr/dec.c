@@ -2,7 +2,9 @@
 
 static void instr_execute_1op(){
     operand_read(&opr_src);
+    uint32_t temp=cpu.eflags.CF;
     opr_src.val=alu_sub(1,opr_src.val,data_size);
+    cpu.eflags.CF=temp;
     operand_write(&opr_src);
 }
 
