@@ -23,12 +23,12 @@ make_instr_func(call_near){
 make_instr_func(call_near_indirect){
     OPERAND rm,opr_eip;
     int len=1;
-    cpu.esp-=data_size/8;
     rm.type=OPR_MEM;
     rm.data_size=data_size;
     len+=modrm_opcode_rm(eip+len,&opcode,&rm);
     operand_read(&rm);
     opr_eip.data_size=data_size;
+    cpu.esp-=data_size/8;
     opr_eip.type=OPR_MEM;
     opr_eip.addr=cpu.esp;
     opr_eip.sreg=SREG_SS;
