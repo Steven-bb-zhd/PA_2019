@@ -1,7 +1,8 @@
 #include "nemu.h"
 #include "stdio.h"
 
-typedef strcut {
+typedef struct 
+{
     uint8_t valid_bit;
     uint32_t In_addr;
     uint32_t Group_Num;
