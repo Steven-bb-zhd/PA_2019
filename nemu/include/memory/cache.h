@@ -1,5 +1,6 @@
 #include "nemu.h"
 #include "stdio.h"
+#include "stdlib.h"
 
 typedef struct 
 {
