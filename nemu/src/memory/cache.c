@@ -79,7 +79,7 @@ void cache_write(paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
             else{
                 uint32_t over_limit=0;
                 over_limit=64-rel;
-                uint32data2=0;
+                uint32_t data2=0;
                 data2=data>>(8*over_limit);
                 cache_write(paddr+over_limit,len-over_limit,data2,cache);
             }
