@@ -19,12 +19,9 @@ uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache){
             addr_temp=paddr&0xffffffc0;
             for(int j=0;j<64;++j){
                 cache_block[8*group+i].data[j]=hw_mem_read(addr_temp,1);
-                addr_temp+=1;
             }
-            return 8*group+i;
         }
     }
-    
 }
 
 uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
