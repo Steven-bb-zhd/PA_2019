@@ -15,7 +15,8 @@ uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache){
     for(int i=0;i<8;++i){
         if(cache_block[8*group+i].valid_bit==0){
             cache_block[8*group+i].valid_bit=1;
-            uint32_t addr_temp=0;   
+            uint32_t addr_temp=0;
+            addr_temp=paddr&0xffffffc0;
         }
     }
 }
