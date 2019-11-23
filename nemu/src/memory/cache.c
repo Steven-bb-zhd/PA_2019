@@ -10,18 +10,33 @@ void init_caache(){
     }
 }
 
-uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache){
+uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
     uint32_t group=(paddr>>6)&0x7f;
     for(int i=0;i<8;++i){
         if(cache_block[8*group+i].valid_bit==0){
             cache_block[8*group+i].valid_bit=1;
+            cache_block[8*group+i].tag=tag;
             uint32_t addr_temp=0;
             addr_temp=paddr&0xffffffc0;
             for(int j=0;j<64;++j){
                 cache_block[8*group+i].data[j]=hw_mem_read(addr_temp,1);
+                addr_temp+=1;
             }
+            return 8*group+i;
         }
     }
+    srand((unsigned)time(0));
+    int x=0;
+    x=rand()%8;
+    cache_block[8*group+x].valid_bit=1;
+    cache_block[8*group+x].tag=tag;
+    uint32_t addr_temp=0;
+    addr_temp=paddr&0xffffffc0;
+    for(int j=0;j<64;++j){
+        cache_block[8*group+x].data[j]=hw_mem_read(addr_temp,1);
+        addr_temp+=1;
+    }
+    return 8*group+x;
 }
 
 uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
@@ -44,6 +59,10 @@ uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
         }
     }
     if(!find){
-
+        group_addr=addcache(paddr,len,cache,sign);
     }
+    uint32_t res=0;
+    memcpy(&res,cache[group_addr].data+rel,len);
+    return res;
 }
+
