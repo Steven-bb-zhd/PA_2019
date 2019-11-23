@@ -10,7 +10,7 @@ void init_caache(){
     }
 }
 
-uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
+uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
     uint32_t group=(paddr>>6)&0x7f;
     for(int i=0;i<8;++i){
         if(cache_block[8*group+i].valid_bit==0){
