@@ -71,7 +71,7 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
     uint32_t group_num=(paddr>>6)&0x7f;
     uint32_t tag=(paddr>>13)&0x7ffff;
     uint32_t rel=paddr&0x3f;
-    printf("x=%d\n",1);
+    //printf("x=%d\n",1);
     for(int i=0;i<8;++i){
         if(cache_block[8*group_num+i].valid_bit&&(cache_block[8*group_num+i].tag==tag)){
             if((len+rel)<=64){
