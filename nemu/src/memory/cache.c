@@ -65,7 +65,7 @@ uint32_t cache_read (paddr_t paddr , size_t len , Cacheline* cache){
     }
 }
 
-/*void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
+void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
     hw_mem_write(paddr,len,data);
     uint32_t group_num=(paddr>>6)&0x7f;
     uint32_t tag=(paddr>>13)&0x7ffff;
@@ -86,7 +86,7 @@ uint32_t cache_read (paddr_t paddr , size_t len , Cacheline* cache){
                 else if(over==1)
                     over_data=(data&0xff000000)>>24;
                 cache_write(paddr+4-over,over,over_data,cache);
-            }
+            }*/
         }
     }
-}*/
+}
