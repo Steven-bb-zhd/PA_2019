@@ -10,7 +10,7 @@ void init_caache(){
     }
 }
 
-uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
+uint32_t addcache(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
     uint32_t group=(paddr>>6)&0x7f;
     for(int i=0;i<8;++i){
         if(cache_block[8*group+i].valid_bit==0){
@@ -26,7 +26,7 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
         }
     }
     srand((unsigned)time(0));
-    uint32_t x=0;
+    int x=0;
     x=rand()%8;
     cache_block[8*group+x].valid_bit=1;
     cache_block[8*group+x].tag=tag;
@@ -39,53 +39,49 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
     return 8*group+x;
 }
 
-uint32_t cache_read (paddr_t paddr , size_t len , Cacheline* cache){
-    uint32_t group_num=(paddr>>6)&0x7f;
-    uint32_t tag=(paddr>>13)&0x7ffff;
+uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
+    uint32_t group=(paddr>>6)&0x7f;
+    uint32_t sign=(paddr>>13)&0x7ffff;
     uint32_t rel=paddr&0x3f;
     if(rel==61||rel==62||rel==63){
-        uint32_t res=0;
-        res=hw_mem_read(paddr,len);
+        uint32_t res = hw_mem_read(paddr,len);
         return res;
     }
+    uint32_t group_addr=0;
     bool find=false;
     for(int i=0;i<8;++i){
-        if(cache_block[8*group_num+i].valid_bit&&(cache_block[8*group_num+i].tag==tag)){
-            find=true;
-            uint32_t res=0;
-            memcpy((void*)&res,(void*)cache_block[8*group_num+i].data+rel,len);
-            return res;
+        if(cache_block[group*8+i].tag==sign){
+            if(cache_block[group*8+i].valid_bit){
+                find = true;
+                group_addr=group*8+i;
+                break;
+            }
         }
     }
     if(!find){
-        uint32_t key=notfind(paddr,len,cache,tag);
-        uint32_t res=0;
-        memcpy((void*)&res,(void*)cache_block[key].data+rel,len);
-        return res;
+        group_addr=addcache(paddr,len,cache,sign);
     }
+    uint32_t res=0;
+    memcpy(&res,cache[group_addr].data+rel,len);
+    return res;
 }
 
-void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
+void cache_write(paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
     hw_mem_write(paddr,len,data);
-    uint32_t group_num=(paddr>>6)&0x7f;
-    uint32_t tag=(paddr>>13)&0x7ffff;
+    uint32_t group=(paddr>>6)&0x7f;
+    uint32_t sign=(paddr>>13)&0x7ffff;
     uint32_t rel=paddr&0x3f;
     for(int i=0;i<8;++i){
-        if(cache_block[8*group_num+i].valid_bit&&(cache_block[8*group_num+i].tag==tag)){
-            if((len+rel)<=64){
-                memcpy(cache_block[8*group_num+i].data+rel,&data,len);
+        if(cache_block[8*group+i].tag==sign&&cache_block[8*group+i].valid_bit){
+            if(rel+len<=64){
+                memcpy(cache_block[8*group+i].data+rel,&data,len);
             }
             else{
-                uint32_t over=0;
-                over=len+rel-64;
-                uint32_t over_data=0;
-                if(over==3)
-                    over_data=(data&0xffffff00)>>8;
-                else if(over==2)
-                    over_data=(data&0xffff0000)>>16;
-                else if(over==1)
-                    over_data=(data&0xff000000)>>24;
-                cache_write(paddr+4-over,over,over_data,cache);
+                uint32_t over_limit=0;
+                over_limit=64-rel;
+                uint32_t data1=0,data2=0;
+                data2=data>>(8*over_limit);
+                cache_write(paddr+over_limit,len-over_limit,data2,cache);
             }
         }
     }
