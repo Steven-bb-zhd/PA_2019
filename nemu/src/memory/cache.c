@@ -26,8 +26,8 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
         }
     }
     srand((unsigned)time(0));
-    int x=0;
-    uint32_t x=rand()%8;
+    uint32_t x=0;
+    x=rand()%8;
     cache_block[8*group+x].valid_bit=1;
     cache_block[8*group+x].tag=tag;
     uint32_t addr_temp=0;
