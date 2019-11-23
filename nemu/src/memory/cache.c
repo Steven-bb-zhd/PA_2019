@@ -81,11 +81,11 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
                 uint32_t over=0;
                 over=len+rel-64;
                 uint32_t over_data=0;
-                if(over==3)
+                if(over==1)
                     over_data=(data&0xffffff00)>>8;
                 else if(over==2)
                     over_data=(data&0xffff0000)>>16;
-                else if(over==1)
+                else if(over==3)
                     over_data=(data&0xff000000)>>24;
                 cache_write(paddr+4-over,over,over_data,cache);
             }
