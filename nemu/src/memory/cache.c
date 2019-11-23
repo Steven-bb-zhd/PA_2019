@@ -65,7 +65,7 @@ uint32_t cache_read (paddr_t paddr , size_t len , Cacheline* cache){
     }
 }
 
-void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
+/*void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache){
     hw_mem_write(paddr,len,data);
     uint32_t group_num=(paddr>>6)&0x7f;
     uint32_t tag=(paddr>>13)&0x7ffff;
@@ -75,7 +75,7 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
             if((len+rel)<=64){
                 memcpy(cache_block[8*group_num+i].data+rel,&data,len);
             }
-            /**/else{
+            /*else{
                 uint32_t over=0;
                 over=len+rel-64;
                 uint32_t over_data=0;
@@ -89,4 +89,4 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
             }
         }
     }
-}
+}*/
