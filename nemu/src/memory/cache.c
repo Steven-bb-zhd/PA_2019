@@ -88,7 +88,7 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
                 else if(over==3)
                     over_data=(data&0xff000000)>>24;
                 cache_write(paddr+4-over,over,over_data,cache);
-            }*/
+            }
         }
-    }
+    }*/
 }
