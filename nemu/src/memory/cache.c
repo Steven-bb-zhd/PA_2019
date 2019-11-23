@@ -74,7 +74,7 @@ void cache_write (paddr_t paddr , size_t len , uint32_t data, Cacheline * cache)
     //printf("x=%d\n",1);
     for(int i=0;i<8;++i){
         if(cache_block[8*group_num+i].valid_bit&&(cache_block[8*group_num+i].tag==tag)){
-            if((len+rel)<=64){
+            /* if((len+rel)<=64){
                 memcpy(cache_block[8*group_num+i].data+rel,&data,len);
             }
             /* *else{
