@@ -53,14 +53,14 @@ uint32_t cache_read (paddr_t paddr , size_t len , Cacheline* cache){
         if(cache_block[8*group_num+i].valid_bit&&(cache_block[8*group_num+i].tag==tag)){
             find=true;
             uint32_t res=0;
-            memcpy(&res,cache_block[8*group_num+i].data+rel,len);
+            memcpy(&res,(void*)cache_block[8*group_num+i].data+rel,len);
             return res;
         }
     }
     if(!find){
         uint32_t key=notfind(paddr,len,cache,tag);
         uint32_t res=0;
-        memcpy(&res,cache_block[key].data+rel,len);
+        memcpy(&res,(void*)cache_block[key].data+rel,len);
         return res;
     }
 }
