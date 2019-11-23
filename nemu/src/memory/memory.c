@@ -3,9 +3,12 @@
 #include "memory/memory.h"
 #include "device/mm_io.h"
 #include <memory.h>
+#include "memory/cache.h"
 #include <stdio.h>
 
 uint8_t hw_mem[MEM_SIZE_B];
+
+extern Cacheline cache_block[1024];
 
 uint32_t hw_mem_read(paddr_t paddr, size_t len)
 {
@@ -22,7 +25,12 @@ void hw_mem_write(paddr_t paddr, size_t len, uint32_t data)
 uint32_t paddr_read(paddr_t paddr, size_t len)
 {
 	uint32_t ret = 0;
-	ret = hw_mem_read(paddr, len);
+	#ifdef CACHE_ENABLED
+		ret = cache_read(paddr, len, cache_block);
+	#else
+		ret = hw_mem_read(paddr, len);
+	#endif
+
 	return ret;
 }
 
