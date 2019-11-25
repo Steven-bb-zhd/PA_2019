@@ -43,7 +43,7 @@ uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
     uint32_t group_num=(paddr>>6)&0x7f;
     uint32_t tag=(paddr>>13)&0x7ffff;
     uint32_t rel=paddr&0x3f;
-    if(rel==61||rel==62||rel==63){
+    if((rel+len)>64){
         uint32_t res=0;
         res=hw_mem_read(paddr,len);
         return res;
