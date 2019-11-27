@@ -57,3 +57,29 @@ make_instr_func(jmp_rm_v){
         
         return 0;
 }
+
+make_instr_func(ljmp){
+        OPERAND seg,offset;
+        seg.data_size=16;
+        seg.sreg=SREG_CS;
+        seg.addr=eip+1+data_size/8;
+        seg.type=OPR_IMM;
+        operand_read(&seg);
+        
+        offset.data_size=data_size;
+        offset.addr=eip+1;
+        offset.type=OPR_IMM;
+        offset.sreg=SREG_CS;
+        operand_read(&offset);
+        
+        uint16_t index=(seg.val>>3)&0x1fff;
+        //cpu.cs.val=seg.val;
+        if(data_size==16){
+                cpu.eip=(offset.val&0xffff);
+        }
+        else{
+                cpu.eip=offset.val;
+        }
+
+        return 0;
+}
