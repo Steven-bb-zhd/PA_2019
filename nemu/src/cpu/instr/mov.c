@@ -48,6 +48,17 @@ make_instr_func(mov_r2c_l){
         return len;
 }
 
+make_instr_func(mov_rm2s_w){
+        OPERAND sreg,rm;;
+        int len=1;
+        len+=modrm_r_rm(eip+1,&rm,&sreg);
+        sreg.type=OPR_SREG;
+        operand_read(&rm);
+        sreg.val=rm.val;
+        operand_write(&sreg);
+        return len;
+}
+
 make_instr_func(mov_zrm82r_v) {
 	int len = 1;
 	OPERAND r, rm;
