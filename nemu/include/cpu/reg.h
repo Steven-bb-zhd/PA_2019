@@ -3,6 +3,27 @@
 
 #include "nemu.h"
 
+typedef struct
+	{
+		union 
+		{
+			uint16_t val;
+			struct{
+				uint32_t rpl : 2;
+				uint32_t ti :1;
+				uint32_t index :13;
+			};
+		};
+
+		struct{
+			uint32_t base;
+			uint32_t limit;
+			uint32_t type :5;
+			uint32_t privilege_level :2;
+			uint32_t soft_usee :1;
+		};
+	}SegReg;
+
 // define the structure of registers
 typedef struct
 {
@@ -55,30 +76,15 @@ typedef struct
 	} eflags;
 
 #ifdef IA32_SEG
-	GDTR gdtr; // GDTR, todo: define type GDTR
-	// segment registers, todo: define type SegReg
-	typedef struct
-	{
-		union 
-		{
-			uint16_t val;
-			struct{
-				uint32_t rpl : 2;
-				uint32_t ti :1;
-				uint32_t index :13;
-			};
-		};
 
-		struct{
-			uint32_t base;
-			uint32_t limit;
-			uint32_t type :5;
-			uint32_t privilege_level :2;
-			uint32_t soft_usee :1;
-		};
-	}SegReg;
+	struct {
+		uint32_t limit :16;
+		uint32_t base :32;
+	}gdtr;
+	 // GDTR, todo: define type GDTR
+	// segment registers, todo: define type SegReg
 	
-	typedef union {
+	union {
 		struct {
 			uint32_t pe :1;
 			uint32_t mp :1;
@@ -90,7 +96,7 @@ typedef struct
 			uint32_t val;
 		};
 		uint32_t val;
-	}CR0;
+	}cr0;
 	union {
 		SegReg segReg[6];
 		struct
@@ -99,11 +105,6 @@ typedef struct
 		};
 	};
 	// control registers, todo: define type CR0
-	CR0 cr0;
-	typedef struct {
-		uint32_t limit :16;
-		uint32_t base :32;
-	}GDTR;
 
 	
 #else
