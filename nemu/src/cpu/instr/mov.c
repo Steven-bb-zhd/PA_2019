@@ -20,7 +20,7 @@ make_instr_impl_2op(mov, a, o, v)
 make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 
-make_instr_func(mov_c2r_v){
+make_instr_func(mov_c2r_l){
         OPERAND cr,r;
         cr.data_size=32;
         r.data_size=32;
@@ -34,7 +34,7 @@ make_instr_func(mov_c2r_v){
         return len;
 }
 
-make_instr_func(mov_r2c_v){
+make_instr_func(mov_r2c_l){
         OPERAND cr,r;
         cr.data_size=32;
         r.data_size=32;
