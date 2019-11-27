@@ -157,4 +157,5 @@ int jnp_short_(uint32_t eip,uint8_t opcode);
 int jb_short_(uint32_t eip,uint8_t opcode);
 int push_i_v(uint32_t eip,uint8_t opcode);
 int stos_v(uint32_t eip,uint8_t opcode);
+int lgdt(uint32_t eip,uint8_t opcode);
 #endif
