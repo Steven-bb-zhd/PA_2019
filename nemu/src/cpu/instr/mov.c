@@ -20,6 +20,34 @@ make_instr_impl_2op(mov, a, o, v)
 make_instr_impl_2op(mov, o, a, b)
 make_instr_impl_2op(mov, o, a, v)
 
+make_instr_func(mov_c2r_v){
+        OPERAND cr,r;
+        cr.data_size=32;
+        r.data_size=32;
+        int len=1;
+        len+=modrm_r_rm(eip+1,&cr,&r);
+        cr.type=OPR_CREG;
+        operand_read(&cr);
+        r.val=cr.val;
+        operand_write(&r);
+        print_asm_2("mov", opr_dest.data_size == 8 ? "b" : (opr_dest.data_size == 16 ? "w" : "l"), len, &opr_src, &opr_dest);
+        return len;
+}
+
+make_instr_func(mov_r2c_v){
+        OPERAND cr,r;
+        cr.data_size=32;
+        r.data_size=32;
+        int len=1;
+        len+=modrm_r_rm(eip+1,&r,&cr);
+        cr.type=OPR_CREG;
+        operand_read(&r);
+        cr.val=r.val;
+        operand_write(&cr);
+        print_asm_2("mov", opr_dest.data_size == 8 ? "b" : (opr_dest.data_size == 16 ? "w" : "l"), len, &opr_src, &opr_dest);
+        return len;
+}
+
 make_instr_func(mov_zrm82r_v) {
 	int len = 1;
 	OPERAND r, rm;
