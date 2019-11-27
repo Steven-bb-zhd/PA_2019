@@ -58,7 +58,7 @@ make_instr_func(jmp_rm_v){
         return 0;
 }
 
-make_instr_func(ljmp){
+make_instr_func(jmp_far_imm){
         OPERAND seg,offset;
         seg.data_size=16;
         seg.sreg=SREG_CS;
