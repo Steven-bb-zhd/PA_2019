@@ -161,4 +161,5 @@ int lgdt(uint32_t eip,uint8_t opcode);
 int jmp_far_imm(uint32_t eip,uint8_t opcode);
 int mov_c2r_l(uint32_t eip,uint8_t opcode);
 int mov_r2c_l(uint32_t eip,uint8_t opcode);
+int mov_rm2s_w(uint32_t eip,uint8_t opcode);
 #endif

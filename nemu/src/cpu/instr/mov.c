@@ -50,6 +50,8 @@ make_instr_func(mov_r2c_l){
 
 make_instr_func(mov_rm2s_w){
         OPERAND sreg,rm;;
+        sreg.data_size=16;
+        rm.data_size=16;
         int len=1;
         len+=modrm_r_rm(eip+1,&rm,&sreg);
         sreg.type=OPR_SREG;
