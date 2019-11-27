@@ -93,7 +93,7 @@ typedef struct
 			uint32_t et :1;
 			uint32_t reserve :26;
 			uint32_t pg :1;
-			uint32_t val;
+			//uint32_t val;
 		};
 		uint32_t val;
 	}cr0;
