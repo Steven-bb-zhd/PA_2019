@@ -72,7 +72,7 @@ make_instr_func(jmp_far_imm){
         offset.sreg=SREG_CS;
         operand_read(&offset);
         
-        uint16_t index=(seg.val>>3)&0x1fff;
+        /////uint16_t index=(seg.val>>3)&0x1fff;
         //cpu.cs.val=seg.val;
         if(data_size==16){
                 cpu.eip=(offset.val&0xffff);
