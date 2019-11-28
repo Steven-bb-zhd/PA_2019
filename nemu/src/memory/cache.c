@@ -22,7 +22,7 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
                 cache_block[8*group+i].data[j]=hw_mem_read(addr_temp,1);
                 addr_temp+=1;
             }
-            printf("%x\n",123);
+            //printf("%x\n",123);
             return 8*group+i;
         }
     }
@@ -46,6 +46,7 @@ uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
     uint32_t rel=paddr&0x3f;
     if((rel+len)>64){
         uint32_t res=0;
+        printf("%x\n",123);
         res=hw_mem_read(paddr,len);
         return res;
     }
