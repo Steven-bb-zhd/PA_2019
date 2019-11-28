@@ -20,6 +20,7 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
             addr_temp=paddr&0xffffffc0;
             for(int j=0;j<64;++j){
                 memcpy(cache_block[8*group+i].data+j,hw_mem+addr_temp,1);
+                addr_temp+=1;
             }
             //printf("%x\n",123);
             return 8*group+i;
