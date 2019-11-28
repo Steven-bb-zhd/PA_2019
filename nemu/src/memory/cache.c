@@ -21,6 +21,7 @@ uint32_t notfind(paddr_t paddr , size_t len , Cacheline* cache, uint32_t tag){
             for(int j=0;j<64;++j){
                 cache_block[8*group+i].data[j]=hw_mem_read(addr_temp,1);
                 addr_temp+=1;
+                printf("%x\n",123);
             }
             return 8*group+i;
         }
