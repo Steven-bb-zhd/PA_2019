@@ -46,8 +46,8 @@ uint32_t cache_read(paddr_t paddr , size_t len , Cacheline* cache){
     uint32_t rel=paddr&0x3f;
     if((rel+len)>64){
         uint32_t res=0;
-        printf("%x\n",123);
-        res=hw_mem_read(paddr,len);
+        //printf("%x\n",123);
+        memcpy(&res,hw_mem+paddr,len);
         return res;
     }
     bool find=false;
