@@ -23,7 +23,7 @@ void load_sreg(uint8_t sreg)
 	memcpy(&segdesc,hw_mem+cpu.gdtr.base+8*(cpu.segReg[sreg].index),8);
 	uint32_t base=((segdesc.base_31_24<<24)|(segdesc.base_23_16<<16)|(segdesc.base_15_0));
 	uint32_t limit=((segdesc.limit_19_16<<16)|(segdesc.limit_15_0));
-	assert(segdesc.present==1);
+	//assert(segdesc.present==1);
 	assert(segdesc.granularity==1);
 	assert(limit==0xfffff);
 	assert(base==0);
