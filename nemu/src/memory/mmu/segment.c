@@ -20,7 +20,7 @@ void load_sreg(uint8_t sreg)
 	/* TODO: load the invisibile part of the segment register 'sreg' by reading the GDT.
 	 * The visible part of 'sreg' should be assigned by mov or ljmp already.
 	 */
-	/* SegDesc segdesc;
+	SegDesc segdesc;
 	memcpy(&segdesc,hw_mem+cpu.gdtr.base+8*(cpu.segReg[sreg].index),8);
 	uint32_t base=((segdesc.base_31_24<<24)|(segdesc.base_23_16<<16)|(segdesc.base_15_0));
 	uint32_t limit=((segdesc.limit_19_16<<16)|(segdesc.limit_15_0));
@@ -32,27 +32,5 @@ void load_sreg(uint8_t sreg)
 	cpu.segReg[sreg].base=base;
 	cpu.segReg[sreg].limit=limit;
 	//cpu.segReg[sreg].type=segdesc.type;
-	cpu.segReg[sreg].privilege_level=segdesc.privilege_level;*/
-	assert(cpu.segReg[sreg].ti == 0);
-	
-	uint32_t idx = cpu.segReg[sreg].index;
-	laddr_t gdtIdx = cpu.gdtr.base + idx*sizeof(SegDesc);
-	SegDesc segRead;
-	segRead.val[0] = laddr_read(gdtIdx, 4);
-	segRead.val[1] = laddr_read(gdtIdx + 4, 4);
-	assert(segRead.base_15_0 == 0 && segRead.base_23_16 == 0 &&
-			segRead.base_31_24 == 0);
-	assert(segRead.limit_15_0 == 0xffff && 
-			segRead.limit_19_16 == 0xf);
-	assert(segRead.granularity == 1);
-	assert(segRead.present == 1);
-
-	cpu.segReg[sreg].base = segRead.base_15_0 | 
-			(segRead.base_23_16 << 16) |
-			(segRead.base_31_24 << 24);
-	cpu.segReg[sreg].limit = segRead.limit_15_0 |
-			(segRead.limit_19_16 << 16);
-	cpu.segReg[sreg].type = segRead.type;
-	cpu.segReg[sreg].privilege_level = segRead.privilege_level;
-	//cpu.segReg[sreg].soft_use = segRead.soft_use;
+	cpu.segReg[sreg].privilege_level=segdesc.privilege_level;
 }
