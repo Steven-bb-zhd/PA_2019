@@ -14,10 +14,12 @@ make_instr_func(lgdt)
     cpu.gdtr.limit=limit;
     if(data_size==16){
         memcpy(&base,hw_mem+rel.val+2,3);
+        printf("base_16=%x\n",base);
         cpu.gdtr.base=base&0x00ffffffff;
     }
     else{
         memcpy(&base,hw_mem+rel.val+2,4);
+        printf("base_32=%x\n",base);
         cpu.gdtr.base=base;
     }
     return 6;
