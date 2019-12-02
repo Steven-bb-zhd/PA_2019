@@ -48,9 +48,9 @@ uint32_t laddr_read(laddr_t laddr, size_t len)
 {
 	uint32_t paddr=laddr;
 	assert(len == 1 || len == 2 || len == 4);
-	if(cpu.cr0.pe&&cpu.cr0.pg){
+	/*/if(cpu.cr0.pe&&cpu.cr0.pg){
 		paddr=page_translate(laddr);
-	}
+	}*/
 	
 	return paddr_read(paddr, len);
 }
@@ -58,10 +58,10 @@ uint32_t laddr_read(laddr_t laddr, size_t len)
 void laddr_write(laddr_t laddr, size_t len, uint32_t data)
 {
 	uint32_t paddr=laddr;
-	if(cpu.cr0.pe&&cpu.cr0.pg){
+	/* /if(cpu.cr0.pe&&cpu.cr0.pg){
 		paddr=page_translate(laddr);
 		//return paddr_read(hwaddr,len);
-	}
+	}*/
 	paddr_write(paddr, len, data);
 }
 
@@ -72,9 +72,9 @@ uint32_t vaddr_read(vaddr_t vaddr, uint8_t sreg, size_t len)
 		return laddr_read(vaddr, len);
 	#else
 		uint32_t laddr=vaddr;
-		if(cpu.cr0.pe){
+		/*/if(cpu.cr0.pe){
 			laddr=segment_translate(vaddr,sreg);
-		}
+		}*/
 		return laddr_read(laddr, len);
 	#endif
 	
@@ -88,9 +88,9 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data)
 		laddr_write(vaddr, len, data);
 	#else
 		uint32_t laddr=vaddr;
-		if(cpu.cr0.pe){
+		/* /if(cpu.cr0.pe){
 			laddr=segment_translate(vaddr,sreg);
-		}
+		}*/
 		laddr_write(laddr, len, data);
 	#endif
 }
