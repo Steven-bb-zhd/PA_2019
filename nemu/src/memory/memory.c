@@ -84,6 +84,15 @@ void vaddr_write(vaddr_t vaddr, uint8_t sreg, size_t len, uint32_t data)
 {
 	assert(len == 1 || len == 2 || len == 4);
 	laddr_write(vaddr, len, data);
+	#ifndef IA32_SEG
+		laddr_write(vaddr, len, data);
+	#else
+		uint32_t laddr=vaddr;
+		if(cpu.cr0.pe){
+			laddr=segment_translate(vaddr,sreg);
+		}
+		laddr_write(laddr, len, data);
+	#endif
 }
 
 void init_mem()
