@@ -108,37 +108,9 @@ typedef struct
 
 	
 #else
-	//uint8_t dummy_seg[142]; // make __ref_ instructions safe to use
+	uint8_t dummy_seg[142]; // make __ref_ instructions safe to use
 #endif
 #ifdef IA32_PAGE
-
-	struct {
-		uint32_t limit :16;
-		uint32_t base :32;
-	}gdtr;
-	 // GDTR, todo: define type GDTR
-	// segment registers, todo: define type SegReg
-	
-	union {
-		struct {
-			uint32_t pe :1;
-			uint32_t mp :1;
-			uint32_t em :1;
-			uint32_t ts :1;
-			uint32_t et :1;
-			uint32_t reserve :26;
-			uint32_t pg :1;
-			//uint32_t val;
-		};
-		uint32_t val;
-	}cr0;
-	union {
-		SegReg segReg[6];
-		struct
-		{
-			SegReg es, cs, ss, ds, fs, gs;
-		};
-	};
 	// control registers, todo: define type CR3
 	union
 	{
@@ -148,6 +120,8 @@ typedef struct
 		};
 		uint32_t val;
 	}cr3;
+	
+	
 #else
 	uint8_t dummy_page[4];
 #endif
