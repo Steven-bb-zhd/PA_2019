@@ -39,6 +39,7 @@ uint32_t loader()
 			uint32_t addr;
 #ifdef IA32_PAGE
 			addr=(uint32_t)mm_malloc(ph->p_vaddr,ph->p_memsz);
+			printf("%d\n",1);
 #else
 			addr=ph->p_vaddr;
 #endif
