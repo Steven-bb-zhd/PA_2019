@@ -7,7 +7,7 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg)
 	/* TODO: perform segment translation from virtual address to linear address
 	 * by reading the invisible part of the segment register 'sreg'
 	 */
-	printf("%x\n",1);
+	//printf("%x\n",1);
 	assert(sreg>=0&&sreg<=6);
 	uint32_t laddr=0;
 	laddr=cpu.segReg[sreg].base+offset;
