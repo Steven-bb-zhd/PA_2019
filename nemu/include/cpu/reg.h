@@ -112,6 +112,15 @@ typedef struct
 #endif
 #ifdef IA32_PAGE
 	// control registers, todo: define type CR3
+	union
+	{
+		struct{
+		uint32_t pdbr :20;
+		uint32_t reserve :12;
+		};
+		uint32_t val;
+	}CR3;
+	
 	CR3 cr3;
 #else
 	uint8_t dummy_page[4];
