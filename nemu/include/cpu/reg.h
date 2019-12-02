@@ -119,9 +119,7 @@ typedef struct
 		uint32_t reserve :12;
 		};
 		uint32_t val;
-	}CR3;
-	
-	CR3 cr3;
+	}cr3;
 #else
 	uint8_t dummy_page[4];
 #endif
