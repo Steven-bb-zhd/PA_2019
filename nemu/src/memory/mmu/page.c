@@ -19,10 +19,11 @@ paddr_t page_translate(laddr_t laddr)
 	assert(p_present==1);
 	pg_tbl&=0xfffff000;
 	uint32_t res=pg_tbl+offset;
-	return res;
+	return res;*/
 	printf("\nPlease implement page_translate()\n");
-	assert(0);*/
+	assert(0);
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
+	;
 #endif
 }
