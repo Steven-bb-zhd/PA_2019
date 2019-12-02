@@ -36,7 +36,7 @@ uint32_t loader()
 	{
 		if (ph->p_type == PT_LOAD)
 		{
-			uint8_t *addr;
+			uint32_t addr;
 #ifdef IA32_PAGE
 			addr=(uint8_t *)mm_malloc(ph->p_vaddr,ph->p_memsz);
 #else
