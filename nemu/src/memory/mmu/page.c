@@ -12,12 +12,12 @@ paddr_t page_translate(laddr_t laddr)
 	uint32_t dir_entry=hw_mem_read(dir_base+dir,4);
 	uint32_t d_present=(dir_entry>>31)&0x1;
 	assert(d_present==1);
-	dir_entry<<=12;
+	dir_entry&=0xfffff000;
 	uint32_t pg_base=dir_entry+page;
 	uint32_t pg_tbl=hw_mem_read(pg_base,4);
 	uint32_t p_present=(pg_tbl>>31)&0x1;
 	assert(p_present==1);
-	pg_tbl<<=12;
+	pg_tbl&=0xfffff000;
 	uint32_t res=pg_tbl+offset;
 	return res;
 	printf("\nPlease implement page_translate()\n");
