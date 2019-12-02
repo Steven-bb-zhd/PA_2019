@@ -24,6 +24,5 @@ paddr_t page_translate(laddr_t laddr)
 	assert(0);*/
 #else
 	return tlb_read(laddr) | (laddr & PAGE_MASK);
-	;
 #endif
 }
