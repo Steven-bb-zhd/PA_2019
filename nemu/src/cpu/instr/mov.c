@@ -40,7 +40,7 @@ make_instr_func(mov_r2c_l){
         cr.data_size=32;
         r.data_size=32;
         int len=1;
-        len+=modrm_r_rm(eip+1,&r,&cr);
+        len+=modrm_r_rm(eip+1,&cr,&r);
 	//r.type=OPR_MEM;
         cr.type=OPR_CREG;
         operand_read(&r);
