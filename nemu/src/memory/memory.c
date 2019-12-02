@@ -45,6 +45,11 @@ void paddr_write(paddr_t paddr, size_t len, uint32_t data)
 
 uint32_t laddr_read(laddr_t laddr, size_t len)
 {
+	if(cpu.cr0.pe==1&&cpu.cr0.pg==1)
+	{
+		paddr_t hwaddr=page_translate(laddr);
+		return paddr_read(hwaddr,len);
+	}
 	return paddr_read(laddr, len);
 }
 
