@@ -23,6 +23,7 @@ paddr_t page_translate(laddr_t laddr)
 	//uint32_t p_present=pg_tbl&0x1;
 	//assert(p_present==1);
 	assert(pte_read.present==1);
+	printf("pte.page_frame=%x laddr=%x\n",pte_read.page_frame,laddr);
 	//pg_tbl&=0xfffff000;
 	uint32_t res=(pte_read.page_frame<<12)|offset;
 	return res;
