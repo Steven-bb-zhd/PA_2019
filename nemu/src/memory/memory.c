@@ -58,6 +58,7 @@ uint32_t laddr_read(laddr_t laddr, size_t len)
 void laddr_write(laddr_t laddr, size_t len, uint32_t data)
 {
 	uint32_t paddr=laddr;
+	printf("cr0.pg=%x\n",1);
 	if(cpu.cr0.pe&&cpu.cr0.pg){
 		paddr=page_translate(laddr);
 		//return paddr_read(hwaddr,len);
