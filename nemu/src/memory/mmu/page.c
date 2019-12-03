@@ -18,7 +18,7 @@ paddr_t page_translate(laddr_t laddr)
 	uint32_t p_present=pg_tbl&0x1;
 	assert(p_present==1);
 	pg_tbl&=0xfffff000;
-	uint32_t res=pg_tbl+offset;
+	uint32_t res=pg_tbl|offset;
 	return res;
 	printf("\nPlease implement page_translate()\n");
 	assert(0);
