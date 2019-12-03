@@ -47,10 +47,6 @@ make_instr_func(jmp_rm_v){
         print_asm_1("jmp rm","",len,&rm);
         if(data_size==16)
         {
-
-
-
-                printf("%x\n",1);
                 rm.val=(uint32_t)(rm.val<<16)>>16;
                 cpu.eip=rm.val&0xffff;
         }
