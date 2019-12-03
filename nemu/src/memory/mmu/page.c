@@ -16,7 +16,7 @@ paddr_t page_translate(laddr_t laddr)
 	assert(d_present==1);
 	assert(pde_read.present);
 	//dir_entry&=0xfffff000;
-	uint32_t pg_base=pde_read.page_frame+(page*sizeof(PTE));
+	uint32_t pg_base=(pde_read.page_frame<<12)+(page*sizeof(PTE));
 	uint32_t pg_tbl=hw_mem_read(pg_base,4);
 	PTE pte_read;
 	pte_read.val=pg_tbl;
@@ -24,7 +24,7 @@ paddr_t page_translate(laddr_t laddr)
 	assert(p_present==1);
 	assert(pte_read.present==1);
 	//pg_tbl&=0xfffff000;
-	uint32_t res=pte_read.page_frame|offset;
+	uint32_t res=(pte_read.page_frame<<12)|offset;
 	return res;
 	printf("\nPlease implement page_translate()\n");
 	assert(0);
