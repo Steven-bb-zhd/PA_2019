@@ -8,7 +8,7 @@ paddr_t page_translate(laddr_t laddr)
 	uint32_t dir = (laddr & 0xffc00000) >> 22;
 	uint32_t page = (laddr & 0x003ff000) >> 12;
 	uint32_t offset = laddr & 0x00000fff;
-	uint32_t dirBase = cpu.cr3.pbdr << 12;
+	uint32_t dirBase = cpu.cr3.pdbr << 12;
 	uint32_t pdeAddr = dirBase + dir * sizeof(PDE);
 	//printf("laddr: 0x%x\ndirBase: 0x%x\tpdeAddr: 0x%x\n", laddr, dirBase, pdeAddr);
 	PDE pdeRead;
