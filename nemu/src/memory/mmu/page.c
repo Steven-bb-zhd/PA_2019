@@ -9,11 +9,11 @@ paddr_t page_translate(laddr_t laddr)
 	uint32_t page=(laddr>>12)&0x3ff;
 	uint32_t offset=laddr&0xfff;
 	uint32_t dir_base=cpu.cr3.pdbr<<12;
-	uint32_t dir_entry=hw_mem_read(dir_base+(dir<<2),4);
+	uint32_t dir_entry=hw_mem_read(dir_base+(dir*sizeof(PDE)),4);
 	uint32_t d_present=dir_entry&0x1;
 	assert(d_present==1);
 	dir_entry&=0xfffff000;
-	uint32_t pg_base=dir_entry+(page<<2);
+	uint32_t pg_base=dir_entry+(page*sizeof(PTE));
 	uint32_t pg_tbl=hw_mem_read(pg_base,4);
 	uint32_t p_present=pg_tbl&0x1;
 	assert(p_present==1);
