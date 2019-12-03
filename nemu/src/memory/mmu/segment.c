@@ -9,6 +9,8 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg)
 	 */
 	//printf("%x\n",1);
 	//assert(sreg>=0&&sreg<=6);
+	if(sreg>5)
+		printf("sreg=%x\n",sreg);
 	uint32_t laddr=0;
 	laddr=cpu.segReg[sreg].base+offset;
 	return laddr;
