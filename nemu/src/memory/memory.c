@@ -66,7 +66,7 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data)
 
 
 
-		//printf("%x\n",1);
+		printf("%x\n",1);
 		paddr=page_translate(laddr);
 		//return paddr_read(hwaddr,len);
 	}
