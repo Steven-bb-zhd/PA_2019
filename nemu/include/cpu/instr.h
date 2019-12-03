@@ -164,4 +164,5 @@ int mov_r2c_l(uint32_t eip,uint8_t opcode);
 int mov_rm2s_w(uint32_t eip,uint8_t opcode);
 int and_i2a_v(uint32_t eip,uint8_t opcode);
 int and_i2a_b(uint32_t eip,uint8_t opcode);
+int cmp_i2a_v(uint32_t eip,uint8_t opcode);
 #endif
