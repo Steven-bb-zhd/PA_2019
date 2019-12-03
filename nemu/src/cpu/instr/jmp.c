@@ -63,7 +63,7 @@ make_instr_func(jmp_far_imm){
         seg.data_size=16;
         seg.sreg=SREG_CS;
         seg.addr=eip+1+data_size/8;
-        seg.type=OPR_IMM;
+        seg.type=OPR_SREG;
         operand_read(&seg);
         
         offset.data_size=data_size;
