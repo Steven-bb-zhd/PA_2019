@@ -8,7 +8,7 @@ uint32_t segment_translate(uint32_t offset, uint8_t sreg)
 	 * by reading the invisible part of the segment register 'sreg'
 	 */
 	//printf("%x\n",1);
-	//assert(sreg>=0&&sreg<=6);
+	assert(sreg>=0&&sreg<=5);
 	//printf("sreg=%x\n",sreg);
 	if(sreg>5)
 		printf("sreg=%x\n",sreg);
