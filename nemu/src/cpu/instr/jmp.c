@@ -47,7 +47,7 @@ make_instr_func(jmp_rm_v){
         print_asm_1("jmp rm","",len,&rm);
         if(data_size==16)
         {
-                rm.val=(uint32_t)(rm.val<<16)>>16;
+                rm.val=(int32_t)(rm.val<<16)>>16;
                 cpu.eip=rm.val&0xffff;
         }
         else
@@ -63,7 +63,7 @@ make_instr_func(jmp_far_imm){
         seg.data_size=16;
         seg.sreg=SREG_CS;
         seg.addr=eip+1+data_size/8;
-        seg.type=OPR_SREG;
+        seg.type=OPR_IMM;
         operand_read(&seg);
         
         offset.data_size=data_size;
