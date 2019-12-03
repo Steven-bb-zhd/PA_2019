@@ -61,12 +61,7 @@ void laddr_write(laddr_t laddr, size_t len, uint32_t data)
 	//printf("cr0.pe=%x",cpu.cr0.pe);
 	//printf("  cr0.pg=%x\n",cpu.cr0.pg);
 	if(cpu.cr0.pe&&cpu.cr0.pg){
-
-
-
-
-
-		//printf("%x\n",1);
+		
 		paddr=page_translate(laddr);
 		//return paddr_read(hwaddr,len);
 	}
