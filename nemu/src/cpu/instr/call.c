@@ -31,7 +31,7 @@ make_instr_func(call_near_indirect){
     cpu.esp-=data_size/8;
     opr_eip.type=OPR_MEM;
     opr_eip.addr=cpu.esp;
-    //opr_eip.sreg=SREG_SS;
+    opr_eip.sreg=SREG_SS;
     opr_eip.val=eip+len;
     operand_write(&opr_eip);
     cpu.eip=rm.val;
