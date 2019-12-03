@@ -23,7 +23,7 @@ make_instr_func(call_near){
 make_instr_func(call_near_indirect){
     OPERAND rm,opr_eip;
     int len=1;
-    rm.type=OPR_MEM;
+    //rm.type=OPR_MEM;
     rm.data_size=data_size;
     len+=modrm_opcode_rm(eip+len,&opcode,&rm);
     operand_read(&rm);
