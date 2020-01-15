@@ -3,7 +3,7 @@
 make_instr_func(lgdt)
 {
     OPERAND rel;
-    int len=1;
+    //int len=1;
     rel.data_size=32;
     rel.type=OPR_IMM;
     rel.sreg=SREG_SS;
