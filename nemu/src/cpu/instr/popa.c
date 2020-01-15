@@ -14,4 +14,12 @@ make_instr_func(popa_v){
         cpu.esp += data_size / 8;
         operand_read(&reg[i]);
     }
+
+    for (int i = 0; i < 8; ++i){
+        reg[i].type=OPR_REG;
+        reg[i].addr = i;
+        if(i!=REG_ESP)
+            operand_write(&reg[i]);
+    }
+    return 1;
 }
