@@ -42,7 +42,7 @@ void raise_intr(uint8_t intr_no)
 	cpu.eip=(gate.offset_15_0&0xffff)+((gate.offset_31_16<<16)&0xffff0000);
 	uint16_t selector = gate.selector;
 	cpu.cs.val = selector;
-	load_sreg((uint8_t)cpu.cs.index);
+	//load_sreg((uint8_t)cpu.cs.index);
 
 	//cpu.eip = offset;
 	//printf("Please implement raise_intr()");
