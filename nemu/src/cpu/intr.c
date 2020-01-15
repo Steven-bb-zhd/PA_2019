@@ -44,6 +44,7 @@ void raise_intr(uint8_t intr_no)
 	cpu.cs.val = selector;
 	load_sreg((uint8_t)cpu.cs.index);
 
+	cpu.eip = offset;
 	printf("Please implement raise_intr()");
 	assert(0);
 #endif
