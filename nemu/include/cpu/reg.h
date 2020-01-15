@@ -131,7 +131,7 @@ typedef struct
 	// interrupt
 	struct
 	{
-		uint32_t limit : 16;
+		uint16_t limit : 16;
 		uint32_t base : 32;
 	}idtr;
 	
