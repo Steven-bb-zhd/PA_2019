@@ -2,5 +2,8 @@
 
 make_instr_func(lidt){
 
-    OPERAND
+    OPERAND rel;
+    rel.data_size=32;
+    rel.type=OPR_IMM;
+    
 }
