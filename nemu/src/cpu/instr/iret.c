@@ -8,7 +8,7 @@ make_instr_func(iret_v){
     opr_eip.data_size=32;
     opr_eip.addr=cpu.esp;
     operand_read(&opr_eip);
-    cpu.esp+=4;
+    cpu.esp+=2;
     cpu.eip=opr_eip.val;
 
     opr_cs.type=OPR_MEM;
@@ -18,4 +18,6 @@ make_instr_func(iret_v){
     operand_read(&opr_cs);
     cpu.esp+=4;
     cpu.cs=opr_cs.val&0xffff;
+
+
 }
