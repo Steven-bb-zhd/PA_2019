@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_func(popa_v){
+make_instr_func(popa){
     print_asm_0("popa","",1);
     OPERAND reg[8];
     for(int i=0;i<8;++i){
