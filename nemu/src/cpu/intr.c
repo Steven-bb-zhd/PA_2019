@@ -10,6 +10,7 @@ void raise_intr(uint8_t intr_no)
 	opr_eflags.data_size=32;
 	opr_eflags.type=OPR_MEM;
 	opr_eflags.sreg=SREG_SS;
+	opr_eflags.val=cpu.eflags;
 	cpu.esp-=4;
 	opr_eflags.addr=cpu.esp;
 	operand_write(&opr_eflags);
@@ -17,6 +18,7 @@ void raise_intr(uint8_t intr_no)
 	opr_cs.data_size=16;
 	opr_cs.type=OPR_MEM;
 	opr_cs.sreg=SREG_SS;
+	opr_cs.val=cpu.cs;
 	cpu.esp-=2;
 	opr_cs.addr=cpu.esp;
 	operand_write(&opr_cs);
@@ -24,6 +26,7 @@ void raise_intr(uint8_t intr_no)
 	opr_eip.data_size=32;
 	opr_eip.type=OPR_MEM;
 	opr_eip.sreg=SREG_SS;
+	opr_eip.val=cpu.eip;
 	cpu.esp-=4;
 	opr_eip.addr=cpu.esp;
 	operand_write(&opr_eip);
