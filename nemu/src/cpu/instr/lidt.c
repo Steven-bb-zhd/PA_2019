@@ -5,7 +5,7 @@ make_instr_func(lidt){
     OPERAND rel;
     rel.data_size=32;
     rel.type=OPR_IMM;
-    rel.sreg=SREG_CS;
+    rel.sreg=SREG_SS;
     rel.addr=eip+2;
     operand_read(&rel);
     uint16_t limit=0;
