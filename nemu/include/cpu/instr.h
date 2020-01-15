@@ -171,4 +171,5 @@ int int_(uint32_t eip,uint8_t opcode);
 int lidt(uint32_t eip,uint8_t opcode);
 int pusha(uint32_t eip,uint8_t opcode);
 int popa(uint32_t eip,uint8_t opcode);
+int iret(uint32_t eip,uint8_t opcode);
 #endif
