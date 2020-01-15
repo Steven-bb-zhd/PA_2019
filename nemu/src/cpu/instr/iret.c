@@ -1,6 +1,6 @@
 #include "cpu/instr.h"
 
-make_instr_func(iret_v){
+make_instr_func(iret){
     OPERAND opr_eip,opr_cs,opr_eflags;
 
     opr_eip.type=OPR_MEM;
