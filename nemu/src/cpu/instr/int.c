@@ -8,6 +8,6 @@ make_instr_func(int_v){
     imm.addr=eip+1;
     operand_read(&imm);
     print_asm_1("int","",2,&imm);
-    raise_sw_intr(imm.val);
+    //raise_sw_intr(imm.val);
     return 0;
 }
