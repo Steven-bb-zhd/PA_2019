@@ -37,7 +37,7 @@ void raise_intr(uint8_t intr_no)
 	gate.val[1]=laddr_read(idt_index+4,4);
 
 	if(gate.type == 0xe)
-		cpu.eflags.IF = 0;
+		cpu.eflags.IF = 1;
 
 	uint32_t offset = (gate.offset_31_16 << 16) 
 						| gate.offset_15_0;
