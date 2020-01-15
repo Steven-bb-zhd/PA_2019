@@ -129,7 +129,13 @@ typedef struct
 
 #ifdef IA32_INTR
 	// interrupt
-	IDTR idtr; // IDTR, todo: define type IDTR
+	struct
+	{
+		uint32_t limit : 16;
+		uint32_t base : 32;
+	}idtr;
+	
+	idtr; // IDTR, todo: define type IDTR
 	uint8_t intr;
 #else
 	uint8_t dummy_intr[7];
