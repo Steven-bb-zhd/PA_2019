@@ -5,49 +5,48 @@
 void raise_intr(uint8_t intr_no)
 {
 #ifdef IA32_INTR
-	OPERAND opr_eip,opr_cs,opr_eflags;
+	OPERAND temp_32;
+      OPERAND temp_16;
+      temp_32.data_size=data_size; 
+      temp_16.data_size=16;
+      temp_32.type=OPR_MEM;
+      temp_16.type=OPR_MEM;
+      temp_32.sreg=SREG_CS;
+      temp_16.sreg=SREG_CS;
+      
+      //push eflags
+      cpu.esp=cpu.esp-4;
+      temp_32.addr=cpu.esp;
+      temp_32.val=cpu.eflags.val;
+      operand_write(&temp_32);
 
-	opr_eflags.data_size=32;
-	opr_eflags.type=OPR_MEM;
-	opr_eflags.sreg=SREG_CS;
-	opr_eflags.val=cpu.eflags.val;
-	cpu.esp-=4;
-	opr_eflags.addr=cpu.esp;
-	operand_write(&opr_eflags);
+      //push cs
+      cpu.esp=cpu.esp-2;
+      temp_16.addr=cpu.esp;
+      temp_16.val=cpu.cs.val;
+      operand_write(&temp_16);
 
-	opr_cs.data_size=16;
-	opr_cs.type=OPR_MEM;
-	opr_cs.sreg=SREG_CS;
-	opr_cs.val=cpu.cs.val;
-	cpu.esp-=2;
-	opr_cs.addr=cpu.esp;
-	operand_write(&opr_cs);
+      //push eip
+      cpu.esp=cpu.esp-4;
+      temp_32.addr=cpu.esp;
+      temp_32.val=cpu.eip;
+      operand_write(&temp_32);
 
-	opr_eip.data_size=32;
-	opr_eip.type=OPR_MEM;
-	opr_eip.sreg=SREG_CS;
-	opr_eip.val=cpu.eip;
-	cpu.esp-=4;
-	opr_eip.addr=cpu.esp;
-	operand_write(&opr_eip);
 
-	laddr_t idt_index=cpu.idtr.base+8*intr_no;
-	GateDesc gate;
-	gate.val[0]=laddr_read(idt_index,4);
-	gate.val[1]=laddr_read(idt_index+4,4);
+      unsigned gateaddr=cpu.idtr.base+intr_no*8;
+      GateDesc gatedesc;
+      gatedesc.val[0]=laddr_read(gateaddr,4);
+      gatedesc.val[1]=laddr_read(gateaddr+4,4);
 
-	if(intr_no >= 32)
-		cpu.eflags.IF = 0;
+      if(intr_no>=32){
+	    cpu.eflags.IF=0;
+      }
 
-	uint32_t offset = (gate.offset_31_16 << 16) 
-						| gate.offset_15_0;
-	uint16_t selector = gate.selector;
-	cpu.cs.val = selector;
-	load_sreg((uint8_t)cpu.cs.index);
+      cpu.cs.val=gatedesc.selector;
+      cpu.eip=(gatedesc.offset_15_0&0xffff)+((gatedesc.offset_31_16<<16)&0xffff0000);
+       //printf("Please implement raise_intr()");
+       //assert(0);
 
-	cpu.eip = offset;
-	printf("Please implement raise_intr()");
-	assert(0);
 #endif
 }
 
