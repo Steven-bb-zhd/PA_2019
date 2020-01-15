@@ -1,7 +1,7 @@
 #include "cpu/instr.h"
 #include "cpu/intr.h"
 
-make_instr_func(int_v){
+make_instr_func(int_){
     OPERAND imm;
     imm.type=OPR_IMM;
     imm.data_size=8;
