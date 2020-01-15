@@ -135,7 +135,7 @@ typedef struct
 		uint32_t base : 32;
 	}idtr;
 	
-	idtr; // IDTR, todo: define type IDTR
+	// IDTR, todo: define type IDTR
 	uint8_t intr;
 #else
 	uint8_t dummy_intr[7];
