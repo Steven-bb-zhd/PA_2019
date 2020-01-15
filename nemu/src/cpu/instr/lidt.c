@@ -16,7 +16,7 @@ make_instr_func(lidt)
         cpu.idtr.base=base&0xffffff;
     }
     else{
-        base=laddr_read(rel+2,4);
+        base=laddr_read(rel.addr+2,4);
         //printf("base_32=%x\n",base);
         cpu.idtr.base=base;
     }
