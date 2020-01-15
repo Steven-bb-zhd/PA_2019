@@ -7,7 +7,7 @@ make_instr_func(pusha_v){
         reg[i].type=OPR_REG;
         reg[i].data_size=data_size;
         reg[i].addr=i;
-        reg[i].sreg=SREG_sS;
+        reg[i].sreg=SREG_SS;
         operand_read(&reg[i]);
     }
 
