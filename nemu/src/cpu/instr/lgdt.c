@@ -15,7 +15,7 @@ make_instr_func(lgdt)
     if(data_size==16){
         memcpy(&base,hw_mem+rel.val+2,3);
         //printf("base_16=%x\n",base);
-        cpu.gdtr.base=base&0x00ffffff;
+        cpu.gdtr.base=base&0xffffff;
     }
     else{
         memcpy(&base,hw_mem+rel.val+2,4);
