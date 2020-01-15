@@ -20,6 +20,13 @@ void raise_intr(uint8_t intr_no)
 	cpu.esp-=2;
 	opr_cs.addr=cpu.esp;
 	operand_write(&opr_cs);
+
+	opr_eip.data_size=32;
+	opr_eip.type=OPR_MEM;
+	opr_eip.sreg=SREG_SS;
+	cpu.esp-=4;
+	opr_eip.addr=cpu.esp;
+	operand_write(&opr_eip);
 	printf("Please implement raise_intr()");
 	assert(0);
 #endif
