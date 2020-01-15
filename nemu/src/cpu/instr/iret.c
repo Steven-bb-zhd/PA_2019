@@ -17,7 +17,7 @@ make_instr_func(iret_v){
     opr_cs.addr=cpu.esp;
     operand_read(&opr_cs);
     cpu.esp+=2;
-    cpu.cs=opr_cs.val&0xffff;
+    cpu.cs.val=opr_cs.val&0xffff;
 
     opr_eflags.type=OPR_MEM;
     opr_eflags.sreg=SREG_SS;
@@ -25,7 +25,7 @@ make_instr_func(iret_v){
     opr_eflags.addr=cpu.esp;
     operand_read(&opr_eflags);
     cpu.esp+=4;
-    cpu.eflags=opr_eflags.val;
+    cpu.eflags.val=opr_eflags.val;
 
     return 0;
 }
