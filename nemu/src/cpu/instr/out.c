@@ -8,7 +8,7 @@ make_instr_func(out_b){
 }
 
 make_instr_func(out_v){
-    print_asm_0("out","","1");
+    print_asm_0("out","",1);
     pio_write(cpu.edx,data_size/8,cpu.eax);
     return 1;
 }
