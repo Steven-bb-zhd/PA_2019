@@ -20,10 +20,10 @@ void create_video_mapping()
 	PDE *dir = get_updir();
 	for (int i = 0; i < 16; ++i)
 	{
-
+		table[160 + i].val = make_pte(VMEM_ADDR + i * PAGE_SIZE);
 	}
-
-	panic("please implement me");
+	dir[0].val=make_pde(va_to_pa(table));
+	//panic("please implement me");
 }
 
 void video_mapping_write_test()
