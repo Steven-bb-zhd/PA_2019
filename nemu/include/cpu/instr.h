@@ -174,4 +174,8 @@ int popa(uint32_t eip,uint8_t opcode);
 int iret(uint32_t eip,uint8_t opcode);
 int sub_i2a_b(uint32_t eip,uint8_t opcode);
 int sub_i2a_v(uint32_t eip,uint8_t opcode);
+int in_b(uint32_t eip,uint8_t opcode);
+int in_v(uint32_t eip,uint8_t opcode);
+int out_b(uint32_t eip,uint8_t opcode);
+int out_v(uint32_t eip,uint8_t opcode);
 #endif
