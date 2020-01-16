@@ -13,7 +13,7 @@ make_instr_func(lgdt)
     if(data_size==16){
         base=laddr_read(rel.addr+2,3);
         //printf("base_16=%x\n",base);
-        cpu.gdtr.base=base&0xffffff;
+        cpu.gdtr.base=base;
     }
     else{
         base=laddr_read(rel.addr+2,4);
