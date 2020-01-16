@@ -43,11 +43,18 @@ uint32_t paddr_read(paddr_t paddr, size_t len)
 
 void paddr_write(paddr_t paddr, size_t len, uint32_t data)
 {
-	#ifdef CACHE_ENABLED
-		cache_write(paddr, len, data, cache_block);
-	#else	
-		hw_mem_write(paddr, len, data);
-	#endif
+	int map_no=is_mmio(paddr);
+	if (map_no == -1)
+	{
+		#ifdef CACHE_ENABLED
+			cache_write(paddr, len, data, cache_block);
+		#else	
+			hw_mem_write(paddr, len, data);
+		#endif
+	}
+	else{
+		mmio_write(paddr,len,data,map_no);
+	}
 }
 
 uint32_t laddr_read(laddr_t laddr, size_t len)
