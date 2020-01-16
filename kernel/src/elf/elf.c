@@ -48,15 +48,16 @@ uint32_t loader()
 			// remove this panic!!!
 			//panic("Please implement the loader");
 /* TODO: copy the segment from the ELF file to its proper memory area */
-#ifdef HAS_DEVICE_IDE
+#ifndef HAS_DEVICE_IDE
 
-			ide_read(addr,(uint32_t)ph->p_offset,ph->p_filesz);
-#else
 			memcpy((void*)addr,(void*)elf+ph->p_offset,ph->p_filesz);
 /* TODO: zeror the memory area [vaddr + file_sz, vaddr + mem_sz) */
 			if(ph->p_filesz<ph->p_memsz){
 				memset((void*)addr+ph->p_filesz,0,ph->p_memsz-ph->p_filesz);
 			}
+
+#else
+			ide_read((uint8_t *)addr, (uint32_t)ph->p_offset, ph->p_filesz);
 #endif
 
 #ifdef IA32_PAGE
