@@ -162,7 +162,7 @@ instr_func opcode_2_byte_entry[256] = {
     /* 0x20 - 0x23*/ mov_c2r_l, inv, mov_r2c_l, inv,
     /* 0x24 - 0x27*/ inv, inv, inv, inv,
     /* 0x28 - 0x2b*/ inv, inv, inv, inv,
-    /* 0x2c - 0x2f*/ sub_i2a_b, sub_i2a_v, inv, inv,
+    /* 0x2c - 0x2f*/ __ref_sub_i2a_b, __ref_sub_i2a_v, inv, inv,
     /* 0x30 - 0x33*/ inv, inv, inv, inv,
     /* 0x34 - 0x37*/ inv, inv, inv, inv,
     /* 0x38 - 0x3b*/ inv, inv, inv, inv,
