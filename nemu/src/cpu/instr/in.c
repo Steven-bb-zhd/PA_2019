@@ -8,7 +8,7 @@ make_instr_func(in_b){
 }
 
 make_instr_func(in_v){
-    print_asm_0("in","",1)
+    print_asm_0("in","",1);
     cpu.eax=pio_read(cpu.edx,data_size/8);
     return 1;
 }
